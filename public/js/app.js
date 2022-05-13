@@ -5,24 +5,13 @@ let dateMonth = dateObj.getMonth();
 let dateYear = dateObj.getFullYear();
 let dateDay = dateObj.getDay();
 
-
 const weekdays = ['M', 'T', 'W', 'T', 'F', 'S', 'S']
+const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec']
 document.getElementById('yearElement').textContent = dateYear;
 const monthElement = document.getElementById('monthElement')
 const ulWeekdays = document.querySelectorAll('#weekdays li');
 const ulDate = document.querySelectorAll('#dateOfWeek li');
 let currentArr = []
-
-//######################
-//Get monday of this week
-//copied from internet
-function setToMonday(date) {
-    let day = date.getDay() || 7;
-    if (day !== 1)
-        date.setHours(-24 * (day - 1));
-    monthElement.textContent = date.getMonth()
-    return date;
-};
 
 //Copy-pasted this function
 //Counts days ahead from the actual day
@@ -32,19 +21,38 @@ Date.prototype.addDays = function (days) {
     return date;
 };
 
-let date = new Date();
-
 //COUNTS DAYS BACKWARDS
-//WORKING
 Date.prototype.subDays = function (days) {
     let date2 = new Date(this.valueOf());
     date2.setDate(date2.getDate() - days);
     return date2;
 };
 
-let date2 = new Date();
+createWeek()
 
-//WORKING - KEEP
+//FUNCTIONS
+
+//This is the month translated from number to string (ex 5 is may, 7 is july)
+function monthToString() {
+    for (let index = 0; index < months.length; index++) {
+        let month = months[index];
+        // console.log(months[index])
+        if (month === dateMonth) {
+            document.getElementById('monthElement').textContent = months.month[index];
+        };
+    };
+};
+
+//Get monday of this week
+//copied from internet
+function setToMonday(date) {
+    let day = date.getDay() || 7;
+    if (day !== 1)
+        date.setHours(-24 * (day - 1));
+    // monthElement.textContent = date.getMonth()
+    return date;
+};
+
 function createWeek() {
     for (let index = 0; index < 7; index++) {
         let week = setToMonday(dateObj).addDays(index)
@@ -52,78 +60,6 @@ function createWeek() {
     };
 };
 
-createWeek()
-
-const months = [{
-    month: 'Jan',
-    days: 31
-}, {
-    month: 'Feb',
-    days: 28
-}, {
-    month: 'Mar',
-    days: 31
-}, {
-    month: 'Apr',
-    days: 30
-}, {
-    month: 'May',
-    days: 31
-}, {
-    month: 'Jun',
-    days: 30
-}, {
-    month: 'Jul',
-    days: 31
-}, {
-    month: 'Aug',
-    days: 31
-}, {
-    month: 'Sept',
-    days: 30
-}, {
-    month: 'Okt',
-    days: 31
-}, {
-    month: 'Nov',
-    days: 30
-}, {
-    month: 'Dec',
-    days: 31
-}]
-
-//TODAYS DATE IS
-//This is the day
-for (let index = 0; index < ulWeekdays.length; index++) {
-    const liWeekday = ulWeekdays[index];
-
-    liWeekday.classList = index + 1;
-
-    if (liWeekday.classList == dateDay) {
-
-        //This is the day translated from number to string. (1 is monday, 3 wednesday...)
-        for (let index = 0; index < weekdays.length; index++) {
-            let day = weekdays[index];
-            day = index + 1;
-
-            if (day === dateDay) {
-                console.log(weekdays[index], dateDate);
-            };
-        };
-    };
-};
-
-
-//This is the month translated from number to string (ex 5 is may, 7 is july)
-for (let index = 0; index < months.length; index++) {
-    let month = months[index];
-    // console.log(months[index])
-    if (month === dateMonth) {
-        document.getElementById('monthElement').textContent = months.month[index];
-    };
-};
-
-//FUNCTIONS
 //Updates the view - the li list, and makes textContent the dates of the week
 function updateDates(arr) {
     for (let index = 0; index < ulDate.length; index++) {
@@ -140,6 +76,7 @@ function updateDates(arr) {
         //     liDate.classList.add("activeDate")
         // };
     };
+    console.log(arr)
     return arr
 };
 
