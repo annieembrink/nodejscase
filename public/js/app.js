@@ -45,6 +45,7 @@ function monthToString(currentMonth) {
 
 //Get monday of this week
 //copied from internet
+//CHECK THIS...
 function setToMonday(date) {
     let day = date.getDay() || 7;
     if (day !== 1)
@@ -52,13 +53,14 @@ function setToMonday(date) {
     return date;
 };
 
+//WORKING
 function currentMonth(currentArr) {
     let month = currentArr[0]
     monthElement.textContent = month.getMonth();
-    console.log('the month of the first weekday', month)
 };
 currentMonth(currentArr)
 
+//WORKING
 function createWeek() {
     for (let index = 0; index < 7; index++) {
         let week = setToMonday(dateObj).addDays(index)
@@ -67,13 +69,13 @@ function createWeek() {
 };
 
 //Updates the view - the li list, and makes textContent the dates of the week
+//WORKING
 function updateDates(arr) {
     for (let index = 0; index < ulDate.length; index++) {
-
         const liDate = ulDate[index];
-
         liDate.textContent = arr[index].getDate();
-
+        currentMonth(arr)
+        console.log('this is the array IN the li-elements', arr)
     };
     return arr
 };
@@ -105,19 +107,23 @@ function updateWeekOnRightClick() {
     }
 };
 
+//THE CURRENTARR doesnt match with inside of li
 //EVENTLISTENERS
 document.getElementById('leftArrow').addEventListener('click', function (e) {
+    console.log('THIS IS THE CURRENTARR', currentArr)
     console.log('left arrow clicked')
     currentMonth(currentArr)
     updateWeekOnLeftClick()
     updateDates(currentArr)
 });
 document.getElementById('rightArrow').addEventListener('click', function (e) {
+    console.log('THIS IS THE CURRENTARR', currentArr)
     console.log('right arrow clicked')
     currentMonth(currentArr)
     updateWeekOnRightClick()
     updateDates(currentArr)
 });
+
 
 
 //PUT IN VIEWS
