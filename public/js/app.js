@@ -33,13 +33,13 @@ createWeek()
 //FUNCTIONS
 
 //This is the month translated from number to string (ex 5 is may, 7 is july)
-function monthToString() {
+function monthToString(currentMonth) {
     for (let index = 0; index < months.length; index++) {
-        let month = months[index];
-        // console.log(months[index])
-        if (month === dateMonth) {
-            document.getElementById('monthElement').textContent = months.month[index];
-        };
+
+        if (index = currentMonth) {
+            console.log(currentMonth)
+        }
+        return currentMonth
     };
 };
 
@@ -49,9 +49,15 @@ function setToMonday(date) {
     let day = date.getDay() || 7;
     if (day !== 1)
         date.setHours(-24 * (day - 1));
-    // monthElement.textContent = date.getMonth()
     return date;
 };
+
+function currentMonth(currentArr) {
+    let month = currentArr[0]
+    monthElement.textContent = month.getMonth();
+    console.log('the month of the first weekday', month)
+};
+currentMonth(currentArr)
 
 function createWeek() {
     for (let index = 0; index < 7; index++) {
@@ -68,15 +74,7 @@ function updateDates(arr) {
 
         liDate.textContent = arr[index].getDate();
 
-        // liDate.classList = index + 1;
-
-        // if (liDate.classList == dateDay) {
-
-        //     liDate.textContent = dateDate;
-        //     liDate.classList.add("activeDate")
-        // };
     };
-    console.log(arr)
     return arr
 };
 
@@ -110,11 +108,13 @@ function updateWeekOnRightClick() {
 //EVENTLISTENERS
 document.getElementById('leftArrow').addEventListener('click', function (e) {
     console.log('left arrow clicked')
+    currentMonth(currentArr)
     updateWeekOnLeftClick()
     updateDates(currentArr)
 });
 document.getElementById('rightArrow').addEventListener('click', function (e) {
     console.log('right arrow clicked')
+    currentMonth(currentArr)
     updateWeekOnRightClick()
     updateDates(currentArr)
 });
