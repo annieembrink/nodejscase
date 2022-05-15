@@ -28,6 +28,10 @@ app.get('/', (req, res) => {
     res.render('calender');
 });
 
+app.get('/newactivity', (req, res) => {
+    res.render('newactivity');
+});
+
 // serve static files
 // -------------------------
 app.use(express.static('public'));

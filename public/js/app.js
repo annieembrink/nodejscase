@@ -121,14 +121,16 @@ function checkClasslist() {
 //EVENTLISTENERS
 document.getElementById('leftArrow').addEventListener('click', function (e) {
     // console.log('THIS IS THE CURRENTARR', currentArr)
-    console.log('left arrow clicked')
+    // console.log('left arrow clicked')
+    checkClasslist()
     currentMonth(currentArr)
     updateWeekOnLeftClick()
     updateDates(currentArr)
 });
 document.getElementById('rightArrow').addEventListener('click', function (e) {
     // console.log('THIS IS THE CURRENTARR', currentArr)
-    console.log('right arrow clicked')
+    // console.log('right arrow clicked')
+    checkClasslist()
     currentMonth(currentArr)
     updateWeekOnRightClick()
     updateDates(currentArr)
