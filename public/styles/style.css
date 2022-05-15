@@ -62,6 +62,10 @@ header {
     text-align: center;
 }
 
+#weekdays li, #dateOfWeek li {
+    width: 30px;
+}
+
 #weekdays {
     padding-top: 5px;
 }
@@ -86,5 +90,4 @@ header {
 .activeDate {
     background-color: #7B886B;
     border-radius: 10px;
-    padding: 5px 10px;
 }

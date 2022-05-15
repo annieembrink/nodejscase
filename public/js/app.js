@@ -75,7 +75,7 @@ function updateDates(arr) {
     for (let index = 0; index < ulDate.length; index++) {
         const liDate = ulDate[index];
         liDate.textContent = arr[index].getDate();
-        currentMonth(arr)  
+        currentMonth(arr)
     };
     // console.log('this is the array IN the li-elements', arr)
     return arr
@@ -108,6 +108,15 @@ function updateWeekOnRightClick() {
     }
 };
 
+//Checks if classList 'activeDate' exists in list
+function checkClasslist() {
+    ulDate.forEach(date => {
+        if (date.classList.contains('activeDate')) {
+            date.classList.remove('activeDate')
+        };
+    });
+};
+
 //THE CURRENTARR doesnt match with inside of li
 //EVENTLISTENERS
 document.getElementById('leftArrow').addEventListener('click', function (e) {
@@ -124,6 +133,15 @@ document.getElementById('rightArrow').addEventListener('click', function (e) {
     updateWeekOnRightClick()
     updateDates(currentArr)
 });
+
+//Click event for li-element
+for (let index = 0; index < ulDate.length; index++) {
+    const date = ulDate[index];
+    date.addEventListener('click', function (e) {
+        checkClasslist()
+        e.target.classList.add('activeDate')
+    });
+};
 
 
 
