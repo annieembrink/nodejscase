@@ -3,7 +3,7 @@ import ejs from 'ejs';
 import mainController from "./controller/mainController.js";
 import mainViews from './views/mainViews.js';
 import mainModel from './model/mainModel.js';
-// import res from 'express/lib/response';
+
 
 // "app" environment
 // -------------------------
@@ -16,8 +16,6 @@ const port = 3000;
 // set template engine to ejs
 // -------------------------
 app.set('view engine', 'ejs');
-// app.use(express.urlencoded({extended: true}));
-// app.use(express.json());
 
 // Parse URL-encoded bodies (as sent by HTML forms)
 app.use(express.urlencoded());
@@ -30,8 +28,6 @@ app.post('/', function (request, response) {
     console.log(request.body.event.title);
     console.log(request.body.event.time);
 });
-
-// app.post('/events', mainController.createEvent());
 
 // middleware (use param next...)
 // -------------------------
@@ -64,8 +60,6 @@ app.post('/events', mainController.createEvent);
 
 // handle errors
 // -------------------------
-
-
 
 // server error 500...
 // -------------------------

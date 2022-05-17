@@ -7,7 +7,7 @@ let dateDay = dateObj.getDay();
 
 const weekdays = ['M', 'T', 'W', 'T', 'F', 'S', 'S']
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'Septemper', 'October', 'November', 'December']
-document.getElementById('yearElement').textContent = dateYear;
+const yearElement = document.getElementById('yearElement')
 const monthElement = document.getElementById('monthElement')
 const ulWeekdays = document.querySelectorAll('#weekdays li');
 const ulDate = document.querySelectorAll('#dateOfWeek li');
@@ -21,7 +21,7 @@ fetch('/', {
     },
     body: JSON.stringify({
         event: {
-            title: document.getElementById('event').value,
+            title: 'title string',
             time: 'just a string named time'
         }
     })
@@ -75,6 +75,13 @@ function currentMonth(currentArr) {
     monthToString(month)
 };
 currentMonth(currentArr)
+
+//Working
+function currentYear(currentArr) {
+    let year = currentArr[0]
+    yearElement.textContent = year.getFullYear();
+};
+currentYear(currentArr)
 
 //WORKING
 function createWeek() {
@@ -139,6 +146,7 @@ document.getElementById('leftArrow').addEventListener('click', function (e) {
     // console.log('left arrow clicked')
     checkClasslist()
     currentMonth(currentArr)
+    currentYear(currentArr)
     updateWeekOnLeftClick()
     updateDates(currentArr)
 });
@@ -147,6 +155,7 @@ document.getElementById('rightArrow').addEventListener('click', function (e) {
     // console.log('right arrow clicked')
     checkClasslist()
     currentMonth(currentArr)
+    currentYear(currentArr)
     updateWeekOnRightClick()
     updateDates(currentArr)
 });
