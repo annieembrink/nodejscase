@@ -62,12 +62,6 @@ app.get('/events', mainController.getAllEvents);
 
 app.post('/events', mainController.createEvent);
 
-
-//When client post new event, the page Calender shows
-// app.post('/events', mainController.createEvent())
-
-
-
 // handle errors
 // -------------------------
 

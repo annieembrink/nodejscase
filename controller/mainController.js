@@ -6,11 +6,11 @@ import mainViews from "../views/mainViews.js";
 export default {
     createEvent: (req, res) => {
      
-        const title = req.body.title;
+        const title = req.body.event.title;
 
-        const time = req.body.time;
+        const time = req.body.event.time;
 
-        // console.log(title, time);
+        console.log(title, time);
         
         const isOK = mainModel.addEvent(title, time);
 

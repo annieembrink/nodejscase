@@ -21,8 +21,8 @@ fetch('/', {
     },
     body: JSON.stringify({
         event: {
-            title: title,
-            time: time
+            title: document.getElementById('event').value,
+            time: 'just a string named time'
         }
     })
 });
