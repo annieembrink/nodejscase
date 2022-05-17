@@ -2,7 +2,8 @@ import express from 'express';
 import ejs from 'ejs';
 import mainController from "./controller/mainController.js";
 import mainViews from './views/mainViews.js';
-import res from 'express/lib/response';
+import mainModel from './model/mainModel.js';
+// import res from 'express/lib/response';
 
 // "app" environment
 // -------------------------
@@ -25,7 +26,7 @@ app.use(express.urlencoded());
 app.use(express.json());
 
 // Access the parse results as request.body
-app.post('/', function(request, response){
+app.post('/', function (request, response) {
     console.log(request.body.event.title);
     console.log(request.body.event.time);
 });
@@ -38,7 +39,9 @@ app.post('/', function(request, response){
 
 // handle requests
 // -------------------------
-
+// serve static files
+// -------------------------
+app.use(express.static('public'));
 
 // route request
 // -------------------------
@@ -50,23 +53,25 @@ app.get('/newactivity', (req, res) => {
     res.render('newactivity');
 });
 
-// app.post('/', (mainController.createEvent));
-
-//When client post new event, the page Calender shows
-// app.post('/events', mainController.createEvent())
-
-// serve static files
-// -------------------------
-app.use(express.static('public'));
-
-// handle errors
-// -------------------------
-
 // 404 not found
 // -------------------------
 app.get('*', (req, res, next) => {
     res.render('404');
 });
+app.get('/events', mainController.getAllEvents);
+
+app.post('/events', mainController.createEvent);
+
+
+//When client post new event, the page Calender shows
+// app.post('/events', mainController.createEvent())
+
+
+
+// handle errors
+// -------------------------
+
+
 
 // server error 500...
 // -------------------------

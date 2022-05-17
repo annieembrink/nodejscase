@@ -5,7 +5,7 @@ const mainModel = {
     getEvents: function () {
         return JSON.parse(fs.readFileSync(dbPath, "utf-8"));
     },
-    //Do I need both saveEvent and addEvent?
+
     saveEvent: function (event) {
         return fs.writeFileSync(dbPath, JSON.stringify(event));
     },

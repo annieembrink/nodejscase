@@ -5,10 +5,18 @@ import mainViews from "../views/mainViews.js";
 
 export default {
     createEvent: (req, res) => {
-        // const events = req.body.title;
-        // console.log(events)
-        // res.render('events', {events: mainModel.getEvents()});
-        // mainViews.allEvents()
-        console.log('the function create event')
-    }
+     
+        const title = req.body.title;
+
+        const time = req.body.time;
+
+        // console.log(title, time);
+        
+        const isOK = mainModel.addEvent(title, time);
+
+        console.log('the function create event in contact')
+    },
+    getAllEvents: (req, res) => {
+        res.render("events", { events: mainModel.getEvents() });
+    },
 }
