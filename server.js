@@ -1,5 +1,8 @@
 import express from 'express';
 import ejs from 'ejs';
+import mainController from "./controller/mainController.js";
+import mainViews from './views/mainViews.js';
+import res from 'express/lib/response';
 
 // "app" environment
 // -------------------------
@@ -12,7 +15,22 @@ const port = 3000;
 // set template engine to ejs
 // -------------------------
 app.set('view engine', 'ejs');
+// app.use(express.urlencoded({extended: true}));
+// app.use(express.json());
 
+// Parse URL-encoded bodies (as sent by HTML forms)
+app.use(express.urlencoded());
+
+// Parse JSON bodies (as sent by API clients)
+app.use(express.json());
+
+// Access the parse results as request.body
+app.post('/', function(request, response){
+    console.log(request.body.event.title);
+    console.log(request.body.event.time);
+});
+
+// app.post('/events', mainController.createEvent());
 
 // middleware (use param next...)
 // -------------------------
@@ -31,6 +49,11 @@ app.get('/', (req, res) => {
 app.get('/newactivity', (req, res) => {
     res.render('newactivity');
 });
+
+// app.post('/', (mainController.createEvent));
+
+//When client post new event, the page Calender shows
+// app.post('/events', mainController.createEvent())
 
 // serve static files
 // -------------------------

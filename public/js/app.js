@@ -6,12 +6,26 @@ let dateYear = dateObj.getFullYear();
 let dateDay = dateObj.getDay();
 
 const weekdays = ['M', 'T', 'W', 'T', 'F', 'S', 'S']
-const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec']
+const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'Septemper', 'October', 'November', 'December']
 document.getElementById('yearElement').textContent = dateYear;
 const monthElement = document.getElementById('monthElement')
 const ulWeekdays = document.querySelectorAll('#weekdays li');
 const ulDate = document.querySelectorAll('#dateOfWeek li');
 let currentArr = []
+const resultDiv = document.getElementById('result')
+
+fetch('/', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        event: {
+            title: title,
+            time: time
+        }
+    })
+});
 
 //Copy-pasted this function
 //Counts days ahead from the actual day
@@ -31,6 +45,7 @@ Date.prototype.subDays = function (days) {
 createWeek()
 
 //FUNCTIONS
+//result/events
 
 //This is the month translated from number to string (ex 5 is may, 7 is july)
 //WORKING

@@ -1,4 +1,4 @@
-import fs from fs;
+import fs from 'fs';
 const dbPath = "./eventsDB.json";
 
 const mainModel = {
@@ -23,3 +23,5 @@ const mainModel = {
         return true;
     }
 }
+
+export default mainModel
