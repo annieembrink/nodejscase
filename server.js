@@ -49,6 +49,10 @@ app.get('/newactivity', (req, res) => {
     res.render('newactivity');
 });
 
+app.get('/events', (req, res) => {
+    res.render('events');
+});
+
 // 404 not found
 // -------------------------
 app.get('*', (req, res, next) => {
@@ -57,6 +61,10 @@ app.get('*', (req, res, next) => {
 app.get('/events', mainController.getAllEvents);
 
 app.post('/events', mainController.createEvent);
+// app.post('/newactivity', (req, res) => {
+//     mainController.createEvent()
+//     res.redirect('/calender')
+// })
 
 // handle errors
 // -------------------------

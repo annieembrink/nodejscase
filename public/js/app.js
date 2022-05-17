@@ -144,6 +144,7 @@ function checkClasslist() {
 document.getElementById('leftArrow').addEventListener('click', function (e) {
     // console.log('THIS IS THE CURRENTARR', currentArr)
     // console.log('left arrow clicked')
+    e.preventDefault()
     checkClasslist()
     currentMonth(currentArr)
     currentYear(currentArr)
@@ -153,6 +154,7 @@ document.getElementById('leftArrow').addEventListener('click', function (e) {
 document.getElementById('rightArrow').addEventListener('click', function (e) {
     // console.log('THIS IS THE CURRENTARR', currentArr)
     // console.log('right arrow clicked')
+    e.preventDefault()
     checkClasslist()
     currentMonth(currentArr)
     currentYear(currentArr)
@@ -164,6 +166,7 @@ document.getElementById('rightArrow').addEventListener('click', function (e) {
 for (let index = 0; index < ulDate.length; index++) {
     const date = ulDate[index];
     date.addEventListener('click', function (e) {
+        e.preventDefault()
         checkClasslist()
         e.target.classList.add('activeDate')
     });
