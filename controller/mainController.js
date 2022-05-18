@@ -14,6 +14,10 @@ export default {
         
         const isOK = mainModel.addEvent(title, time);
 
+        // console.log(mainModel.getEvents())
+        // console.log(mainViews.allEvents(mainModel.getEvents()))
+        mainViews.allEvents()
+
         console.log('function createEvent in controller')
     },
     getAllEvents: (req, res) => {

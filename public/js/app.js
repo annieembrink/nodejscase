@@ -17,7 +17,7 @@ const ulDate = document.querySelectorAll('#dateOfWeek li');
 let currentArr = []
 const resultDiv = document.getElementById('result')
 
-const dbPath = 'eventsDB.json'
+// const dbPath = 'eventsDB.json'
 
 // fetch(dbPath)
 // //   .then(response => JSON.parse(data))
@@ -176,7 +176,7 @@ for (let index = 0; index < ulDate.length; index++) {
     const date = ulDate[index];
   
     date.addEventListener('click', function (e) {
-        
+
         console.log(currentArr[index])
 
         e.preventDefault()

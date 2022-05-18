@@ -27,6 +27,7 @@ app.use(express.json());
 app.post('/', function (request, response) {
     console.log(request.body.event.title);
     console.log(request.body.event.time);
+    console.log('this is app.post in server.js')
 });
 
 // middleware (use param next...)
