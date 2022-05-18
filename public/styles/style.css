@@ -90,6 +90,10 @@ header {
     justify-content: center;
     align-items: center;
     color: #FFE9CE;
+    position: fixed;
+    bottom: 20px;
+    left: 45%;
+    z-index: 100;
 
     /* background: linear-gradient(145deg, #849272, #6f7a60);
     box-shadow: 6px 6px 11px #080808,
