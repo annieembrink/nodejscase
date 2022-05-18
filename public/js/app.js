@@ -16,6 +16,11 @@ const ulWeekdays = document.querySelectorAll('#weekdays li');
 const ulDate = document.querySelectorAll('#dateOfWeek li');
 let currentArr = []
 const resultDiv = document.getElementById('result')
+const submitButton = document.getElementById('addEvent')
+const theForm = document.getElementById('theForm')
+const eventEl = document.getElementById('event')
+const timeEl = document.getElementById('time')
+const eventContainer = document.getElementById('eventContainer')
 
 // const dbPath = 'eventsDB.json'
 
@@ -36,6 +41,19 @@ const resultDiv = document.getElementById('result')
 //     body: JSON.stringify(newEvent)
 
 // });
+
+const dbPath = 'eventsDB.json'
+
+// function getEventsForThisDay() {
+//     fetch(dbPath)
+//     .then(function(response) {
+//         return JSON.parse(response) })
+//     .then(function(data) {
+//         console.log(data)
+//     }
+// )}
+
+// getEventsForThisDay()
 
 //Copy-pasted this function
 //Counts days ahead from the actual day
@@ -185,6 +203,13 @@ for (let index = 0; index < ulDate.length; index++) {
        
     });
 };
+
+submitButton.addEventListener('click', function (e) {
+    eventEl.style.display = "block"
+    timeEl.style.display = "block"
+    submitButton.value = '✓'
+    // eventContainer.style.display = "none"
+})
 
 
 //PUT IN VIEWS

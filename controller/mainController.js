@@ -8,6 +8,7 @@ export default {
      
         const title = req.body.event.title;
 
+        //Want time to be date of the day
         const time = req.body.event.time;
 
         console.log(title, time);

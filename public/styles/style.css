@@ -11,12 +11,21 @@ body {
     background-color: #FFE9CE;
 }
 
+#event, #time {
+    min-width: 80%;
+    min-height: 20px;
+    margin: 40px;
+    border: none;
+    font-size: 2rem;
+}
+
 footer {
     min-height: 100px;
     background-color: #090909;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
+    margin-top: 50px;
     width: 100vw;
     color: #FFE9CE;
     display: flex;
@@ -82,12 +91,30 @@ header {
     align-items: center;
     color: #FFE9CE;
 
-    background: linear-gradient(145deg, #849272, #6f7a60);
+    /* background: linear-gradient(145deg, #849272, #6f7a60);
     box-shadow: 6px 6px 11px #080808,
-        -6px -6px 11px #0a0a0a;
+        -6px -6px 11px #0a0a0a; */
 }
 
 .activeDate {
     background-color: #7B886B;
     border-radius: 10px;
+}
+
+.eventContainer {
+    background-color: #AFB6A7;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    color: #080808;
+    display: block;
+}
+
+.eventContainer:last-of-type {
+    margin-bottom: 200px;
+}
+
+#event, #time {
+    display: none;
 }

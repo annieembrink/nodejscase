@@ -1,6 +1,8 @@
 import fs from 'fs';
 const dbPath = "./eventsDB.json";
 
+
+
 const mainModel = {
     getEvents: function () {
         console.log('function getEvents in model')
