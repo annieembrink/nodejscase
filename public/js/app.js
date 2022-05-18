@@ -1,3 +1,6 @@
+// import mainController from "../../controller/mainController";
+// import mainViews from "../../views/mainViews";
+
 //Just a few variables
 let dateObj = new Date();
 let dateDate = dateObj.getDate();
@@ -14,18 +17,25 @@ const ulDate = document.querySelectorAll('#dateOfWeek li');
 let currentArr = []
 const resultDiv = document.getElementById('result')
 
-fetch('/', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-        event: {
-            title: 'title string',
-            time: 'just a string named time'
-        }
-    })
-});
+const dbPath = 'eventsDB.json'
+
+// fetch(dbPath)
+// //   .then(response => JSON.parse(data))
+//   .then(data => console.log(data));
+
+// const newEvent = {
+//     title: 'example title',
+//     time: 'example time',
+// };
+
+// fetch('/', {
+//     method: 'POST',
+//     headers: {
+//         'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify(newEvent)
+
+// });
 
 //Copy-pasted this function
 //Counts days ahead from the actual day
@@ -139,7 +149,6 @@ function checkClasslist() {
     });
 };
 
-//THE CURRENTARR doesnt match with inside of li
 //EVENTLISTENERS
 document.getElementById('leftArrow').addEventListener('click', function (e) {
     // console.log('THIS IS THE CURRENTARR', currentArr)
@@ -165,13 +174,17 @@ document.getElementById('rightArrow').addEventListener('click', function (e) {
 //Click event for li-element
 for (let index = 0; index < ulDate.length; index++) {
     const date = ulDate[index];
+  
     date.addEventListener('click', function (e) {
+        
+        console.log(currentArr[index])
+
         e.preventDefault()
         checkClasslist()
         e.target.classList.add('activeDate')
+       
     });
 };
-
 
 
 //PUT IN VIEWS

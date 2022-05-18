@@ -14,9 +14,10 @@ export default {
         
         const isOK = mainModel.addEvent(title, time);
 
-        console.log('the function create event in contact')
+        console.log('function createEvent in controller')
     },
     getAllEvents: (req, res) => {
+        console.log('function getAllEvents in controller')
         res.render("events", { events: mainModel.getEvents() });
     },
 }
