@@ -1,5 +1,7 @@
 // import mainController from "../../controller/mainController";
 // import mainViews from "../../views/mainViews";
+// import mainModel from "../model/mainModel.js"
+
 
 //Just a few variables
 let dateObj = new Date();
@@ -22,41 +24,9 @@ const eventEl = document.getElementById('event')
 const timeEl = document.getElementById('time')
 const eventContainer = document.getElementById('eventContainer')
 
-// const dbPath = 'eventsDB.json'
-
-// fetch(dbPath)
-// //   .then(response => JSON.parse(data))
-//   .then(data => console.log(data));
-
-// const newEvent = {
-//     title: 'example title',
-//     time: 'example time',
-// };
-
-// fetch('/', {
-//     method: 'POST',
-//     headers: {
-//         'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify(newEvent)
-
-// });
-
-const dbPath = 'eventsDB.json'
-
-// function getEventsForThisDay() {
-//     fetch(dbPath)
-//     .then(function(response) {
-//         return JSON.parse(response) })
-//     .then(function(data) {
-//         console.log(data)
-//     }
-// )}
-
-// getEventsForThisDay()
-
 //Copy-pasted this function
 //Counts days ahead from the actual day
+
 Date.prototype.addDays = function (days) {
     let date = new Date(this.valueOf());
     date.setDate(date.getDate() + days);
@@ -73,7 +43,6 @@ Date.prototype.subDays = function (days) {
 createWeek()
 
 //FUNCTIONS
-//result/events
 
 //This is the month translated from number to string (ex 5 is may, 7 is july)
 //WORKING
@@ -155,6 +124,7 @@ function updateWeekOnRightClick() {
 
     if (currentArr.length > 7) {
         currentArr = currentArr.splice(7, 7)
+        console.log('THE RIGHT CURRENTARR', currentArr)
     }
 };
 
@@ -169,7 +139,7 @@ function checkClasslist() {
 
 //EVENTLISTENERS
 document.getElementById('leftArrow').addEventListener('click', function (e) {
-    // console.log('THIS IS THE CURRENTARR', currentArr)
+    console.log('THIS IS THE CURRENTARR', currentArr)
     // console.log('left arrow clicked')
     e.preventDefault()
     checkClasslist()
@@ -179,7 +149,7 @@ document.getElementById('leftArrow').addEventListener('click', function (e) {
     updateDates(currentArr)
 });
 document.getElementById('rightArrow').addEventListener('click', function (e) {
-    // console.log('THIS IS THE CURRENTARR', currentArr)
+    console.log('THIS IS THE CURRENTARR', currentArr)
     // console.log('right arrow clicked')
     e.preventDefault()
     checkClasslist()
@@ -192,7 +162,7 @@ document.getElementById('rightArrow').addEventListener('click', function (e) {
 //Click event for li-element
 for (let index = 0; index < ulDate.length; index++) {
     const date = ulDate[index];
-  
+
     date.addEventListener('click', function (e) {
 
         console.log(currentArr[index])
@@ -200,7 +170,7 @@ for (let index = 0; index < ulDate.length; index++) {
         e.preventDefault()
         checkClasslist()
         e.target.classList.add('activeDate')
-       
+
     });
 };
 
@@ -210,6 +180,7 @@ submitButton.addEventListener('click', function (e) {
     submitButton.value = '✓'
     // eventContainer.style.display = "none"
 })
+
 
 
 //PUT IN VIEWS
