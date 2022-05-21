@@ -14,6 +14,38 @@
 
     <%- include ('partials/header.ejs') %>
 
+<header>
+    <div id="blackHeader">
+        <a href="/events"><i class="fa fa-angle-left" id="leftArrow"></i></a>
+        <span id="monthElement"></span>
+        <span id="yearElement"></span>
+        <i class="fa fa-angle-right" id="rightArrow"></i>
+    </div>
+
+    <div id="pinkHeader">
+        <ul id="weekdays">
+            <li>M</li>
+            <li>T</li>
+            <li>W</li>
+            <li>T</li>
+            <li>F</li>
+            <li>S</li>
+            <li>S</li>
+        </ul>
+
+        <!-- innehållet i li-taggen kan vara ett värde från en funktion i någon av våra modeller? skapa en funktion som genererar datum -->
+        <ul id="dateOfWeek">
+            <li id="monday"></li>
+            <li id="tuesday"></li>
+            <li id="wednesday"></li>
+            <li id="thursday"></li>
+            <li id="friday"></li>
+            <li id="saturday"></li>
+            <li id="sunday"></li>
+        </ul>
+    </div>
+</header>
+
     <form method="post" autocomplete="off" action="/events" id="theForm">
         <!-- <label for="event[title">Title:</label> -->
         <input required type="text" name="event[title]" id="event">
@@ -35,7 +67,6 @@
         <%- include ('partials/footer.ejs') %>
 
     <script src="./js/app.js"></script>
-
 
 </body>
 

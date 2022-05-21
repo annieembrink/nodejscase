@@ -4,25 +4,25 @@
 
 
 //Just a few variables
-let dateObj = new Date();
-let dateDate = dateObj.getDate();
-let dateMonth = dateObj.getMonth();
-let dateYear = dateObj.getFullYear();
-let dateDay = dateObj.getDay();
+// let dateObj = new Date();
+// let dateDate = dateObj.getDate();
+// let dateMonth = dateObj.getMonth();
+// let dateYear = dateObj.getFullYear();
+// let dateDay = dateObj.getDay();
 
-const weekdays = ['M', 'T', 'W', 'T', 'F', 'S', 'S']
+// const weekdays = ['M', 'T', 'W', 'T', 'F', 'S', 'S']
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'Septemper', 'October', 'November', 'December']
 const yearElement = document.getElementById('yearElement')
 const monthElement = document.getElementById('monthElement')
-const ulWeekdays = document.querySelectorAll('#weekdays li');
+// const ulWeekdays = document.querySelectorAll('#weekdays li');
 const ulDate = document.querySelectorAll('#dateOfWeek li');
 let currentArr = []
-const resultDiv = document.getElementById('result')
+// const resultDiv = document.getElementById('result')
 const submitButton = document.getElementById('addEvent')
-const theForm = document.getElementById('theForm')
-const eventEl = document.getElementById('event')
-const timeEl = document.getElementById('time')
-const eventContainer = document.getElementById('eventContainer')
+// const theForm = document.getElementById('theForm')
+// const eventEl = document.getElementById('event')
+// const timeEl = document.getElementById('time')
+// const eventContainer = document.getElementById('eventContainer')
 
 //Copy-pasted this function
 //Counts days ahead from the actual day
@@ -83,7 +83,7 @@ currentYear(currentArr)
 //WORKING
 function createWeek() {
     for (let index = 0; index < 7; index++) {
-        let week = setToMonday(dateObj).addDays(index)
+        let week = setToMonday(new Date).addDays(index)
         currentArr.push(week)
     };
 };
@@ -94,7 +94,7 @@ function updateDates(arr) {
     for (let index = 0; index < ulDate.length; index++) {
         const liDate = ulDate[index];
         liDate.textContent = arr[index].getDate();
-        currentMonth(arr)
+        // currentMonth(arr)
     };
     // console.log('this is the array IN the li-elements', arr)
     return arr

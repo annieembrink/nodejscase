@@ -10,10 +10,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.get('/', mainController.getAllEvents);
-app.get('/events', mainController.getAllEvents);
+// app.get('/events', mainController.getAllEvents);
+app.get('/events', mainController.getAllEvents)
+// app.get('/calender', mainController.getAllEvents)
+// app.get('/404', mainController.getAllEvents)
 
 // app.get('/search', quoteController.searchQuote);
 app.post('/events', mainController.createEvent);
+// app.post('/calender', mainController.createEvent);
+// app.post('404', mainController.createEvent);
 // app.put('/quotes/:id', quoteController.updateQuote);
 
 app.use(express.static('public'));

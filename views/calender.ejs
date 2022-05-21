@@ -15,7 +15,25 @@
     <%- include ('partials/header.ejs') %> 
 
     <main>
-        <div id="result"></div>
+
+        <form method="post" autocomplete="off" action="/events" id="theForm">
+            <!-- <label for="event[title">Title:</label> -->
+            <input required type="text" name="event[title]" id="event">
+            <!-- <label for="event[time]">When:</label> -->
+            <input required type="date" name="event[time]" id="time">
+            <input type="submit" value="+" id="addEvent">
+           
+        </form>
+      
+
+        <% events.forEach(function(event) { %>
+            <div class="eventContainer">
+              <p class="event-title"><%= event.title %></p>
+              <p class="event-time"><%= event.time %></p>
+              <button class="edit-button" data-id="<%= event.id %>">Edit</button>
+              <button onclick="handleDelete(<%= event.id %>)">Delete</button>
+            </div>
+            <% }); %>
     
     </main>
 
