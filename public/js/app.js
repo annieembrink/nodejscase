@@ -1,29 +1,12 @@
-// import mainController from "../../controller/mainController";
-// import mainViews from "../../views/mainViews";
-// import mainModel from "../model/mainModel.js"
-
-
-//Just a few variables
-// let dateObj = new Date();
-// let dateDate = dateObj.getDate();
-// let dateMonth = dateObj.getMonth();
-// let dateYear = dateObj.getFullYear();
-// let dateDay = dateObj.getDay();
-
-// const weekdays = ['M', 'T', 'W', 'T', 'F', 'S', 'S']
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 const yearElement = document.getElementById('yearElement')
 const monthElement = document.getElementById('monthElement')
-// const ulWeekdays = document.querySelectorAll('#weekdays li');
 const ulDate = document.querySelectorAll('#dateOfWeek li');
 const testWeek = document.querySelectorAll('#testWeek li');
 let currentArr = []
-// const resultDiv = document.getElementById('result')
 const submitButton = document.getElementById('addEvent')
-// const theForm = document.getElementById('theForm')
-const eventEl = document.getElementById('event')
-const timeEl = document.getElementById('time')
-// const eventContainer = document.getElementById('eventContainer')
+let eventEl = document.getElementById('event')
+let timeEl = document.getElementById('time')
 
 //Copy-pasted this function
 //Counts days ahead from the actual day
@@ -45,24 +28,14 @@ createWeek()
 
 //FUNCTIONS
 
-function someFunc() {
-    console.log('some func was called')
-    testWeek.forEach(date => {
-        if (date.classList.contains('activeDate')) {
-            date.classList.remove('activeDate')
-        };
-    });
+for (let index = 0; index < testWeek.length; index++) {
+    const date = testWeek[index];
+    date.addEventListener('click', function (e) {
+        e.preventDefault()
+        checkClasslist()
+        e.target.classList.add('activeDate')
+    })
 
-    for (let index = 0; index < testWeek.length; index++) {
-        const date = testWeek[index];
-    
-        date.addEventListener('click', function (e) {
-    
-            e.preventDefault()
-            e.target.classList.add('activeDate')
-    
-        });
-    };
 };
 
 //This is the month translated from number to string (ex 5 is may, 7 is july)
@@ -115,9 +88,7 @@ function updateDates(arr) {
     for (let index = 0; index < ulDate.length; index++) {
         const liDate = ulDate[index];
         liDate.textContent = arr[index].getDate();
-        // currentMonth(arr)
     };
-    // console.log('this is the array IN the li-elements', arr)
     return arr
 };
 
@@ -145,13 +116,13 @@ function updateWeekOnRightClick() {
 
     if (currentArr.length > 7) {
         currentArr = currentArr.splice(7, 7)
-        console.log('THE RIGHT CURRENTARR', currentArr)
+        // console.log('THE RIGHT CURRENTARR', currentArr)
     }
 };
 
 //Checks if classList 'activeDate' exists in list
 function checkClasslist() {
-    ulDate.forEach(date => {
+    testWeek.forEach(date => {
         if (date.classList.contains('activeDate')) {
             date.classList.remove('activeDate')
         };
@@ -159,53 +130,116 @@ function checkClasslist() {
 };
 
 //EVENTLISTENERS
-document.getElementById('leftArrow').addEventListener('click', function (e) {
-    console.log('THIS IS THE CURRENTARR', currentArr)
-    // console.log('left arrow clicked')
-    e.preventDefault()
-    checkClasslist()
-    currentMonth(currentArr)
-    currentYear(currentArr)
-    updateWeekOnLeftClick()
-    updateDates(currentArr)
-});
-document.getElementById('rightArrow').addEventListener('click', function (e) {
-    console.log('THIS IS THE CURRENTARR', currentArr)
-    // console.log('right arrow clicked')
-    e.preventDefault()
-    checkClasslist()
-    currentMonth(currentArr)
-    currentYear(currentArr)
-    updateWeekOnRightClick()
-    updateDates(currentArr)
-});
+// document.getElementById('leftArrow').addEventListener('click', function (e) {
+//     console.log('THIS IS THE CURRENTARR', currentArr)
+//     // console.log('left arrow clicked')
+//     e.preventDefault()
+//     checkClasslist()
+//     currentMonth(currentArr)
+//     currentYear(currentArr)
+//     updateWeekOnLeftClick()
+//     updateDates(currentArr)
+// });
+// document.getElementById('rightArrow').addEventListener('click', function (e) {
+//     console.log('THIS IS THE CURRENTARR', currentArr)
+//     // console.log('right arrow clicked')
+//     e.preventDefault()
+//     checkClasslist()
+//     currentMonth(currentArr)
+//     currentYear(currentArr)
+//     updateWeekOnRightClick()
+//     updateDates(currentArr)
+// });
 
 //Click event for li-element
-for (let index = 0; index < ulDate.length; index++) {
-    const date = ulDate[index];
+// for (let index = 0; index < ulDate.length; index++) {
+//     const date = ulDate[index];
 
-    date.addEventListener('click', function (e) {
+//     date.addEventListener('click', function (e) {
+//         e.preventDefault()
+//         checkClasslist()
+//         e.target.classList.add('activeDate')
 
-        console.log(currentArr[index])
-
-        e.preventDefault()
-        checkClasslist()
-        e.target.classList.add('activeDate')
-
-    });
-};
+//     });
+// };
 
 submitButton.addEventListener('click', function (e) {
     eventEl.style.display = "block"
     timeEl.style.display = "block"
     submitButton.value = '✓'
-    // eventContainer.style.display = "none"
 })
 
+function leftArrow() {
+
+    checkClasslist()
+    currentMonth(currentArr)
+    currentYear(currentArr)
+    updateWeekOnLeftClick()
+    updateDates(currentArr)
+}
+
+function rightArrow() {
+  
+    checkClasslist()
+    currentMonth(currentArr)
+    currentYear(currentArr)
+    updateWeekOnRightClick()
+    updateDates(currentArr)
+}
 
 
-//PUT IN VIEWS
-// export default {
-//     allEvents: (events) =>
-//         events.map(event => ` ${event.dateTime}: '${event.title}'`).join('\n')
-// }
+async function handleDelete(id) {
+   
+    console.log("HandleDelete was called with id", id);
+    const response = await fetch(`/events/${id}`, {
+        method: "delete"
+    });
+  
+    if (response.redirected) {
+        window.location.href = response.url; // '/'
+    }
+}
+
+//SEEM TO WORK OK
+async function handleEdit(evt) {
+    console.log('handleEdit was called')
+    const id = Number(evt.target.dataset.id); // data-id -> dataset.id
+    const container = evt.target.parentElement;
+    console.log('container', container)
+    const titleEl = container.querySelector(".event-title");
+    const dateEl = container.querySelector(".event-time");
+    console.log(titleEl, dateEl);
+    // if not editable make them editable
+    if (!titleEl.isContentEditable && !dateEl.isContentEditable) {
+        titleEl.contentEditable = true;
+        dateEl.contentEditable = true;
+        // clicking the same button should save the changes
+        evt.target.innerText = "Save";
+    } else {
+        // Second time clicked it should save changes
+        // reset element to be non editable
+        titleEl.contentEditable = false;
+        dateEl.contentEditable = false;
+        evt.target.innerText = "Edit";
+        // Look at values of authorEl and quoteEl and submit new quote
+        const newEvent = {
+            title: titleEl.innerText,
+            time: dateEl.innerText,
+        };
+        const response = await fetch(`/events/${id}`, {
+            method: "put",
+            body: JSON.stringify(newEvent),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+
+        // Check if there is a redirect to follow the new url
+        if (response.redirected) {
+            window.location.href = response.url;
+        }
+    }
+}
+document
+    .querySelectorAll(".edit-button")
+    .forEach((btn) => (btn.onclick = handleEdit));

@@ -123,18 +123,14 @@ header {
     display: none;
 }
 
-a {
-    color: #FFE9CE;
-}
-
-/* #testWeek {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-} */
-
 #testWeek li {
     list-style: none;
 
+}
+
+.edit-button, .delete-button {
+    padding: 5px 10px;
+    margin: 5px;
+    border: none;
+    border-radius: 10px;
 }

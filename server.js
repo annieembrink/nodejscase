@@ -19,12 +19,12 @@ app.get('/events', mainController.getAllEvents)
 app.post('/events', mainController.createEvent);
 // app.post('/calender', mainController.createEvent);
 // app.post('404', mainController.createEvent);
-// app.put('/quotes/:id', quoteController.updateQuote);
+app.put('/events/:id', mainController.updateEvent);
 
 app.use(express.static('public'));
 
 
-// app.delete('/quotes/:id', quoteController.removeQuote);
+app.delete('/events/:id', mainController.removeEvent);
 
 app.listen(3000, () => {
     console.log(`Example app listening on port ${3000}`);

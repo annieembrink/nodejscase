@@ -16,10 +16,10 @@
 
     <header>
         <div id="blackHeader">
-            <a href="/events"><i class="fa fa-angle-left" id="leftArrow"></i></a>
+            <i onclick="leftArrow()" class="fa fa-angle-left" id="leftArrow"></i>
             <span id="monthElement"></span>
             <span id="yearElement"></span>
-            <i class="fa fa-angle-right" id="rightArrow"></i>
+            <i onclick="rightArrow()" class="fa fa-angle-right" id="rightArrow"></i>
         </div>
 
         <div id="pinkHeader">
@@ -46,9 +46,10 @@
 
             <ul id="testWeek">
                 <%theWeek.forEach(function(nr) {%>
-                <li onclick="someFunc()"><%=nr.getDate()%></li>
+                <li><%=nr.getDate()%></li>
                 <%})%>
             </ul>
+
         </div>
 
     </header>
@@ -63,23 +64,25 @@
     </form>
 
     <%theWeek.forEach(function(nr) {%>
-        <%events.forEach(function(event) {%>
-        <%if(event.time == nr.toLocaleDateString()) {%>
-        <div class="eventContainer">
+    <%events.forEach(function(event) {%>
+    <%if(event.time == nr.toLocaleDateString()) {%>
+    <div class="eventContainer">
+        <div class="card">
             <p class="event-title"><%= event.title %></p>
             <p class="event-time"><%= event.time %></p>
             <button class="edit-button" data-id="<%= event.id %>">Edit</button>
-            <button onclick="handleDelete(<%= event.id %>)">Delete</button>
+            <button class="delete-button" onclick="handleDelete(<%= event.id %>)">Delete</button>
         </div>
-        <%console.log(event)%>
-        <%}%>
+    </div>
+    <%console.log(event)%>
+    <%}%>
         <%})%>
 
-        <%})%>
+    <%})%>
 
-        <%- include ('partials/footer.ejs') %>
+    <%- include ('partials/footer.ejs') %>
 
-        <script src="./js/app.js"></script>
+    <script src="./js/app.js"></script>
 
 </body>
 

@@ -1,7 +1,7 @@
 import mainModel from "../model/mainModel.js";
-import mainViews from "../views/mainViews.js";
 
 export default {
+  
     createEvent: (req, res) => {
 
         const title = req.body.event.title;
@@ -14,6 +14,7 @@ export default {
         console.log('function createEvent in controller')
     },
     getAllEvents: (req, res) => {
+
 
         res.render("events", {
             events: mainModel.getEvents(),
@@ -28,23 +29,32 @@ export default {
         res.render("events", {
             events: mainModel.getFilteredEvents()
         })
+    },
+    removeEvent: (req, res) => {
+        const id = Number(req.params.id);
+        const eventToBeRemoved = mainModel.getEvent(id);
+        const isOK = mainModel.removeEvent(eventToBeRemoved.id);
+        if (!isOK) {
+            console.log('event removed');
+            return;
+        }
+
+        res.redirect('/');
+    },
+    updateEvent: (req, res) => {
+        const id = Number(req.params.id);
+        const title = req.body.title;
+        const time = req.body.time;
+        
+        const isOK = mainModel.updateEvent(id, title, time);
+
+        if (!isOK) {
+            console.log("Quote not Updated");
+            return;
+        }
+
+        console.log("Event Updated");
+
+        res.redirect('/');
     }
 }
-
-
- // res.render("404", {
-        //     events: mainModel.getEvents(),
-        //     dates: mainModel.setToMonday(new Date),
-        //     filteredEvents: mainModel.getFilteredEvents()
-        // });
-
-    // console.log('filtered events')
-        // this.testFunction()
-        // res.render("events", {
-        //     filteredEvents: mainModel.getFilteredEvents()
-        // });
-
-        // const startDate = req.query.start;
-        // const endDate = req.query.end;
-
-        // console.log("getAllQuotes Was called with query", req.query)
