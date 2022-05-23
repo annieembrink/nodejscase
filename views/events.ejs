@@ -34,7 +34,7 @@
         </ul>
 
         <!-- innehållet i li-taggen kan vara ett värde från en funktion i någon av våra modeller? skapa en funktion som genererar datum -->
-        <ul id="dateOfWeek">
+      <ul id="dateOfWeek">
             <li id="monday"></li>
             <li id="tuesday"></li>
             <li id="wednesday"></li>
@@ -42,6 +42,12 @@
             <li id="friday"></li>
             <li id="saturday"></li>
             <li id="sunday"></li>
+        </ul>
+
+        <ul id="testWeek">
+            <%theWeek.forEach(function(nr) {%>
+                <li><%=nr.getDate()%></li>
+            <%})%>
         </ul>
     </div>
 </header>

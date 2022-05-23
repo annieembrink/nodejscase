@@ -61,7 +61,7 @@ header {
 }
 
 #weekdays,
-#dateOfWeek {
+#dateOfWeek, #testWeek {
     display: flex;
     width: 100%;
     justify-content: space-between;
@@ -71,7 +71,7 @@ header {
     text-align: center;
 }
 
-#weekdays li, #dateOfWeek li {
+#weekdays li, #dateOfWeek li, #testWeek li {
     width: 30px;
 }
 
@@ -125,4 +125,16 @@ header {
 
 a {
     color: #FFE9CE;
+}
+
+/* #testWeek {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+} */
+
+#testWeek li {
+    list-style: none;
+
 }

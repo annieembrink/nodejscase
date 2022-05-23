@@ -19,14 +19,10 @@ export default {
             events: mainModel.getEvents(),
             dates: mainModel.setToMonday(new Date),
             addedDays: mainModel.addSevenDays(new Date),
-            reomvedDayes: mainModel.removeSevenDays(new Date)
+            removedDays: mainModel.removeSevenDays(new Date),
+            theWeek: mainModel.weekArray()
         })
 
-        // res.render("404", {
-        //     events: mainModel.getEvents(),
-        //     dates: mainModel.setToMonday(new Date),
-        //     filteredEvents: mainModel.getFilteredEvents()
-        // });
     },
     getAllFilteredEvents: (req, res) => {
         res.render("events", {
@@ -35,6 +31,12 @@ export default {
     }
 }
 
+
+ // res.render("404", {
+        //     events: mainModel.getEvents(),
+        //     dates: mainModel.setToMonday(new Date),
+        //     filteredEvents: mainModel.getFilteredEvents()
+        // });
 
     // console.log('filtered events')
         // this.testFunction()

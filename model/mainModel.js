@@ -8,6 +8,18 @@ const mainModel = {
         return events
 
     },
+    weekArray: function () {
+        let array = []
+        for (let index = 0; index < 7; index++) {
+            let monday = this.setToMonday(new Date);
+            monday.setDate(monday.getDate() + index);
+            // let monday2 = monday.toLocaleDateString()
+            console.log(monday, array)
+            array.push(monday)
+        }
+        return array
+
+    },
     getFilteredEvents: function () {
         //todays date with same format as html form dates
         const events = this.getEvents()
@@ -23,28 +35,14 @@ const mainModel = {
        
         return filteredObjects
     },
-    // createWeek: function () {
-    //     let mondayOfWeek = this.setToMonday(new Date)
-    //     for (let index = 0; index < 7; index++) {
-    //         const add = this.addSevenDays(mondayOfWeek)
-    //         console.log('add', add) 
-    //     }
-
-    //     mondayOfWeek = this.setToMonday(new Date)
-    //     for (let index = 1; index < 7; index++) {
-    //         const remove = this.removeSevenDays(mondayOfWeek, 1)
-    //         console.log('remove', remove) 
-    //     }
-
-    // },
     setToMonday: function (date) {
         let day = date.getDay() || 7;
-        day = day - 1
+        // day = day - 1
         if (day !== 1)
             date.setHours(-24 * (day - 1));
         console.log('monday of this week', date)
 
-        date = date.toLocaleDateString()
+        // date = date.toLocaleDateString()
 
         return date;
     },
@@ -72,11 +70,15 @@ const mainModel = {
 
         return true;
     },
-    addSevenDays: function (date) {
-        date.setDate(date.getDate() + 7);
-        date = date.toLocaleDateString()
-        console.log('added seven days', date)
-        return date
+    addSevenDays: function (days) {
+        
+        let date2 = new Date;
+        date2.setDate(date2.getDate() - days);
+
+        // date.setDate(date.getDate() + 7);
+        // date = date.toLocaleDateString()
+        // console.log('added seven days', date)
+        return date2
     },
     removeSevenDays: function (date) {
         date.setDate(date.getDate() - 7);

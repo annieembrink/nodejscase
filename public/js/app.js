@@ -11,7 +11,7 @@
 // let dateDay = dateObj.getDay();
 
 // const weekdays = ['M', 'T', 'W', 'T', 'F', 'S', 'S']
-const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'Septemper', 'October', 'November', 'December']
+const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 const yearElement = document.getElementById('yearElement')
 const monthElement = document.getElementById('monthElement')
 // const ulWeekdays = document.querySelectorAll('#weekdays li');
@@ -20,8 +20,8 @@ let currentArr = []
 // const resultDiv = document.getElementById('result')
 const submitButton = document.getElementById('addEvent')
 // const theForm = document.getElementById('theForm')
-// const eventEl = document.getElementById('event')
-// const timeEl = document.getElementById('time')
+const eventEl = document.getElementById('event')
+const timeEl = document.getElementById('time')
 // const eventContainer = document.getElementById('eventContainer')
 
 //Copy-pasted this function
