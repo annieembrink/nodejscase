@@ -16,6 +16,7 @@ const yearElement = document.getElementById('yearElement')
 const monthElement = document.getElementById('monthElement')
 // const ulWeekdays = document.querySelectorAll('#weekdays li');
 const ulDate = document.querySelectorAll('#dateOfWeek li');
+const testWeek = document.querySelectorAll('#testWeek li');
 let currentArr = []
 // const resultDiv = document.getElementById('result')
 const submitButton = document.getElementById('addEvent')
@@ -43,6 +44,26 @@ Date.prototype.subDays = function (days) {
 createWeek()
 
 //FUNCTIONS
+
+function someFunc() {
+    console.log('some func was called')
+    testWeek.forEach(date => {
+        if (date.classList.contains('activeDate')) {
+            date.classList.remove('activeDate')
+        };
+    });
+
+    for (let index = 0; index < testWeek.length; index++) {
+        const date = testWeek[index];
+    
+        date.addEventListener('click', function (e) {
+    
+            e.preventDefault()
+            e.target.classList.add('activeDate')
+    
+        });
+    };
+};
 
 //This is the month translated from number to string (ex 5 is may, 7 is july)
 //WORKING

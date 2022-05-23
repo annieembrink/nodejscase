@@ -13,8 +13,6 @@ const mainModel = {
         for (let index = 0; index < 7; index++) {
             let monday = this.setToMonday(new Date);
             monday.setDate(monday.getDate() + index);
-            // let monday2 = monday.toLocaleDateString()
-            console.log(monday, array)
             array.push(monday)
         }
         return array
@@ -32,7 +30,6 @@ const mainModel = {
             }
         })
        
-       
         return filteredObjects
     },
     setToMonday: function (date) {
@@ -40,7 +37,7 @@ const mainModel = {
         // day = day - 1
         if (day !== 1)
             date.setHours(-24 * (day - 1));
-        console.log('monday of this week', date)
+        // console.log('monday of this week', date)
 
         // date = date.toLocaleDateString()
 
@@ -66,7 +63,7 @@ const mainModel = {
         allEvents.push(newEvent);
         this.saveEvent(allEvents);
 
-        console.log('function addEvent in model')
+        // console.log('function addEvent in model')
 
         return true;
     },
@@ -83,7 +80,7 @@ const mainModel = {
     removeSevenDays: function (date) {
         date.setDate(date.getDate() - 7);
         date = date.toLocaleDateString()
-        console.log('removed seven days', date)
+        // console.log('removed seven days', date)
         return date
     }
 }

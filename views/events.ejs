@@ -14,43 +14,44 @@
 
     <%- include ('partials/header.ejs') %>
 
-<header>
-    <div id="blackHeader">
-        <a href="/events"><i class="fa fa-angle-left" id="leftArrow"></i></a>
-        <span id="monthElement"></span>
-        <span id="yearElement"></span>
-        <i class="fa fa-angle-right" id="rightArrow"></i>
-    </div>
+    <header>
+        <div id="blackHeader">
+            <a href="/events"><i class="fa fa-angle-left" id="leftArrow"></i></a>
+            <span id="monthElement"></span>
+            <span id="yearElement"></span>
+            <i class="fa fa-angle-right" id="rightArrow"></i>
+        </div>
 
-    <div id="pinkHeader">
-        <ul id="weekdays">
-            <li>M</li>
-            <li>T</li>
-            <li>W</li>
-            <li>T</li>
-            <li>F</li>
-            <li>S</li>
-            <li>S</li>
-        </ul>
+        <div id="pinkHeader">
+            <ul id="weekdays">
+                <li>M</li>
+                <li>T</li>
+                <li>W</li>
+                <li>T</li>
+                <li>F</li>
+                <li>S</li>
+                <li>S</li>
+            </ul>
 
-        <!-- innehållet i li-taggen kan vara ett värde från en funktion i någon av våra modeller? skapa en funktion som genererar datum -->
-      <ul id="dateOfWeek">
-            <li id="monday"></li>
-            <li id="tuesday"></li>
-            <li id="wednesday"></li>
-            <li id="thursday"></li>
-            <li id="friday"></li>
-            <li id="saturday"></li>
-            <li id="sunday"></li>
-        </ul>
+            <!-- innehållet i li-taggen kan vara ett värde från en funktion i någon av våra modeller? skapa en funktion som genererar datum -->
+            <ul id="dateOfWeek">
+                <li id="monday"></li>
+                <li id="tuesday"></li>
+                <li id="wednesday"></li>
+                <li id="thursday"></li>
+                <li id="friday"></li>
+                <li id="saturday"></li>
+                <li id="sunday"></li>
+            </ul>
 
-        <ul id="testWeek">
-            <%theWeek.forEach(function(nr) {%>
-                <li><%=nr.getDate()%></li>
-            <%})%>
-        </ul>
-    </div>
-</header>
+            <ul id="testWeek">
+                <%theWeek.forEach(function(nr) {%>
+                <li onclick="someFunc()"><%=nr.getDate()%></li>
+                <%})%>
+            </ul>
+        </div>
+
+    </header>
 
     <form method="post" autocomplete="off" action="/events" id="theForm">
         <!-- <label for="event[title">Title:</label> -->
@@ -58,21 +59,27 @@
         <!-- <label for="event[time]">When:</label> -->
         <input required type="date" name="event[time]" id="time">
         <input type="submit" value="+" id="addEvent">
-       
+
     </form>
 
-    <% events.forEach(function(event) { %>
+    <%theWeek.forEach(function(nr) {%>
+        <%events.forEach(function(event) {%>
+        <%if(event.time == nr.toLocaleDateString()) {%>
         <div class="eventContainer">
-          <p class="event-title"><%= event.title %></p>
-          <p class="event-time"><%= event.time %></p>
-          <button class="edit-button" data-id="<%= event.id %>">Edit</button>
-          <button onclick="handleDelete(<%= event.id %>)">Delete</button>
+            <p class="event-title"><%= event.title %></p>
+            <p class="event-time"><%= event.time %></p>
+            <button class="edit-button" data-id="<%= event.id %>">Edit</button>
+            <button onclick="handleDelete(<%= event.id %>)">Delete</button>
         </div>
-        <% }); %>
+        <%console.log(event)%>
+        <%}%>
+        <%})%>
+
+        <%})%>
 
         <%- include ('partials/footer.ejs') %>
 
-    <script src="./js/app.js"></script>
+        <script src="./js/app.js"></script>
 
 </body>
 
