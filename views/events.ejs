@@ -49,7 +49,7 @@
     </div>
 
     <form method="post" autocomplete="off" action="/events" id="theForm">
-        <input required type="text" name="event[title]" id="event">
+        <input maxlength="70" required type="text" name="event[title]" id="event">
         <input required type="date" name="event[time]" id="time">
         <input type="submit" value="+" id="addEvent">
 
