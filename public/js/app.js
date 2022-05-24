@@ -177,6 +177,8 @@ submitButton.addEventListener('click', function (e) {
     submitButton.value = '✓'
 })
 
+eventsOfWeek(time)
+
 async function eventsOfWeek(time) {
     let response = await fetch(`/events/${time}`, {
         method: "get"
@@ -196,37 +198,10 @@ function renderEvents(events) {
                 console.log(event.time)
                 createElement(event)
             }
-            
+
         });
     });
 }
-
-// for (let index = 0; index < currentArr.length; index++) {
-//     let date = currentArr[index];
-//     date = date.toLocaleDateString()
-//     console.log('date', date)
-
-
-// events.forEach(event => {
-//     if (date == event.time) {
-//         console.log('filter', event)
-//         createElement(event)
-//         return event
-//     } })
-
-// for (let index = 0; index < events.length; index++) {
-//     const event = events[index];
-//     if (date == event.time) {
-//         console.log('filter', event)
-//         createElement(event)
-//         return event
-//     }
-
-// }
-// createElement(filteredEvents)
-// };
-// };
-
 
 function createElement(event) {
     console.log('event', event)
@@ -244,27 +219,36 @@ function createElement(event) {
 
     let buttonTag1 = document.createElement('button')
     buttonTag1.className = "edit-button"
-    buttonTag1.dataset = "event.id"
-    buttonTag1.textContent = "Edit"
+    buttonTag1.dataset.id = event.id
+    buttonTag1.innerText = "Edit"
 
     let buttonTag2 = document.createElement('button')
     buttonTag2.className = "delete-button"
-    buttonTag2.textContent = "Delete"
-    buttonTag2.onclick = "handleDelete(event.id)"
-
-
+    buttonTag2.innerText = "Delete"
+    buttonTag2.dataset.id = event.id
+    // buttonTag2.addEventListener('click', handleDelete)
+    
     containerTag.appendChild(divTag)
     divTag.appendChild(pTag1)
     divTag.appendChild(pTag2)
     divTag.appendChild(buttonTag1)
     divTag.appendChild(buttonTag2)
 
+    document
+    .querySelectorAll(".edit-button")
+    .forEach((btn) => (btn.onclick = handleEdit));
+
+    document
+    .querySelectorAll(".delete-button")
+    .forEach((btn) => (btn.onclick = handleDelete));
+  
+
 }
 
 
-async function handleDelete(id) {
-
-    console.log("HandleDelete was called with id", id);
+async function handleDelete(evt) {
+    console.log("HandleDelete was called with id", evt);
+    const id = Number(evt.target.dataset.id)
     const response = await fetch(`/events/${id}`, {
         method: "delete"
     });
@@ -314,6 +298,5 @@ async function handleEdit(evt) {
         }
     }
 }
-document
-    .querySelectorAll(".edit-button")
-    .forEach((btn) => (btn.onclick = handleEdit));
+
+
