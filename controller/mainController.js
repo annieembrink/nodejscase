@@ -6,7 +6,6 @@ export default {
         res.json({events: mainModel.eventsOfWeek(time)})
     }, 
     calenderC: function (req, res) {
-        console.log('test')
         res.render("calender")
     },
     createEvent: (req, res) => {
@@ -21,15 +20,8 @@ export default {
     getAllEvents: (req, res) => {
         res.render("events", {
             events: mainModel.getEvents(),
-            dates: mainModel.setToMonday(new Date),
-            theWeek: mainModel.weekArray(),
-            events2: mainModel.eventsOfWeek()
         })
 
-    },
-    getAllFilteredEvents: (req, res) => {
-        console.log('what is this?')
-        res.render("calender")
     },
     removeEvent: (req, res) => {
         const id = Number(req.params.id);
@@ -46,16 +38,12 @@ export default {
         const id = Number(req.params.id);
         const title = req.body.title;
         const time = req.body.time;
-
         const isOK = mainModel.updateEvent(id, title, time);
 
         if (!isOK) {
             console.log("event not Updated");
             return;
         }
-
-        console.log("Event Updated");
-
         res.redirect('/');
     }
-}
+};

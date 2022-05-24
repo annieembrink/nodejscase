@@ -29,16 +29,6 @@ createWeek()
 
 //FUNCTIONS
 
-// for (let index = 0; index < testWeek.length; index++) {
-//     const date = testWeek[index];
-//     date.addEventListener('click', function (e) {
-//         e.preventDefault()
-//         checkClasslist()
-//         e.target.classList.add('activeDate')
-//     })
-
-// };
-
 //This is the month translated from number to string (ex 5 is may, 7 is july)
 //WORKING
 function monthToString(currentMonth) {
@@ -52,7 +42,6 @@ function monthToString(currentMonth) {
 
 //Get monday of this week
 //copied from internet
-//CHECK THIS...
 function setToMonday(date) {
     let day = date.getDay() || 7;
     if (day !== 1)
@@ -119,7 +108,6 @@ function updateWeekOnRightClick() {
 
     if (currentArr.length > 7) {
         currentArr = currentArr.splice(7, 7)
-        // console.log('THE RIGHT CURRENTARR', currentArr)
     }
 };
 
@@ -134,8 +122,7 @@ function checkClasslist() {
 
 //EVENTLISTENERS
 document.getElementById('leftArrow').addEventListener('click', function (e) {
-    // console.log('THIS IS THE CURRENTARR', currentArr)
-    // console.log('left arrow clicked')
+
     containerTag.innerHTML = ""
     e.preventDefault()
     checkClasslist()
@@ -147,8 +134,7 @@ document.getElementById('leftArrow').addEventListener('click', function (e) {
 });
 
 document.getElementById('rightArrow').addEventListener('click', function (e) {
-    // console.log('THIS IS THE CURRENTARR', currentArr)
-    // console.log('right arrow clicked')
+
     containerTag.innerHTML = ""
     e.preventDefault()
     checkClasslist()
@@ -191,11 +177,8 @@ function renderEvents(events) {
 
     currentArr.forEach(date => {
         date = date.toLocaleDateString()
-        // console.log('date', date)
-
         events.forEach(event => {
             if (event.time === date) {
-                console.log(event.time)
                 createElement(event)
             }
 
@@ -204,7 +187,6 @@ function renderEvents(events) {
 }
 
 function createElement(event) {
-    console.log('event', event)
 
     let divTag = document.createElement('div')
     divTag.className = "card"
@@ -226,7 +208,6 @@ function createElement(event) {
     buttonTag2.className = "delete-button"
     buttonTag2.innerText = "Delete"
     buttonTag2.dataset.id = event.id
-    // buttonTag2.addEventListener('click', handleDelete)
     
     containerTag.appendChild(divTag)
     divTag.appendChild(pTag1)
@@ -241,13 +222,12 @@ function createElement(event) {
     document
     .querySelectorAll(".delete-button")
     .forEach((btn) => (btn.onclick = handleDelete));
-  
-
 }
 
 
 async function handleDelete(evt) {
     console.log("HandleDelete was called with id", evt);
+    
     const id = Number(evt.target.dataset.id)
     const response = await fetch(`/events/${id}`, {
         method: "delete"
@@ -267,10 +247,12 @@ async function handleEdit(evt) {
     const titleEl = container.querySelector(".event-title");
     const dateEl = container.querySelector(".event-time");
     console.log(titleEl, dateEl);
+
     // if not editable make them editable
     if (!titleEl.isContentEditable && !dateEl.isContentEditable) {
         titleEl.contentEditable = true;
         dateEl.contentEditable = true;
+
         // clicking the same button should save the changes
         evt.target.innerText = "Save";
     } else {
@@ -279,6 +261,7 @@ async function handleEdit(evt) {
         titleEl.contentEditable = false;
         dateEl.contentEditable = false;
         evt.target.innerText = "Edit";
+        
         // Look at values of authorEl and quoteEl and submit new quote
         const newEvent = {
             title: titleEl.innerText,

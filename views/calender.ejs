@@ -17,19 +17,6 @@
 
     <p id="start">START PAGE</p>
 
-    <%events2.forEach(function(event) {%>
-
-        <div class="eventContainer">
-            <div class="card">
-                <p class="event-title"><%= event.title %></p>
-                <p class="event-time"><%= event.time %></p>
-                <button class="edit-button" data-id="<%= event.id %>">Edit</button>
-                <button class="delete-button" onclick="handleDelete(<%= event.id %>)">Delete</button>
-            </div>
-        </div>
-        <%console.log(event)%>
-        <%})%>
-
     <%- include ('partials/footer.ejs') %>
 
 

@@ -15,7 +15,6 @@
     <%- include ('partials/header.ejs') %>
     <%- include ('partials/nav.ejs') %>
 
-
     <div id="date-container">
         <div id="blackHeader">
             <i class="fa fa-angle-left" id="leftArrow"></i>
@@ -35,7 +34,6 @@
                 <li>S</li>
             </ul>
 
-            <!-- innehållet i li-taggen kan vara ett värde från en funktion i någon av våra modeller? skapa en funktion som genererar datum -->
             <ul id="dateOfWeek">
                 <li id="monday"></li>
                 <li id="tuesday"></li>
@@ -51,9 +49,7 @@
     </div>
 
     <form method="post" autocomplete="off" action="/events" id="theForm">
-        <!-- <label for="event[title">Title:</label> -->
         <input required type="text" name="event[title]" id="event">
-        <!-- <label for="event[time]">When:</label> -->
         <input required type="date" name="event[time]" id="time">
         <input type="submit" value="+" id="addEvent">
 

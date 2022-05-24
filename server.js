@@ -11,7 +11,6 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('public'));
-// app.use('/img', express.static('img'));
 
 app.get('/', mainController.getAllEvents);
 app.get('/events', mainController.getAllEvents)
