@@ -3,8 +3,16 @@ import fs from 'fs';
 const dbPath = "./eventsDB.json";
 
 const mainModel = {
+    eventsOfWeek: function(time) {
+
+        // const updatedWeekArray = this.getEvents().filter((event) => event.time >= firstDateOfWeek && event.time >= lastDateOfWeek)
+
+        let updatedWeekArray = this.getEvents().filter((event) => event.time)
+        console.log('updatedweekarray', updatedWeekArray)
+        return updatedWeekArray
+    },
     getEvents: function () {
-        const events = JSON.parse(fs.readFileSync(dbPath, "utf-8"))
+        let events = JSON.parse(fs.readFileSync(dbPath, "utf-8"))
         return events
 
     },
@@ -21,20 +29,20 @@ const mainModel = {
         return array
 
     },
-    getFilteredEvents: function () {
-        //todays date with same format as html form dates
-        const events = this.getEvents()
-        let anotherDate = new Date
-        anotherDate = anotherDate.toLocaleDateString()
+    // getFilteredEvents: function () {
+    //     //todays date with same format as html form dates
+    //     const events = this.getEvents()
+    //     let anotherDate = new Date
+    //     anotherDate = anotherDate.toLocaleDateString()
 
-        const filteredObjects = events.filter(function (event) {
-            if (event.time == anotherDate) {
-                return event
-            }
-        })
+    //     const filteredObjects = events.filter(function (event) {
+    //         if (event.time == anotherDate) {
+    //             return event
+    //         }
+    //     })
        
-        return filteredObjects
-    },
+    //     return filteredObjects
+    // },
     setToMonday: function (date) {
         let day = date.getDay() || 7;
         // day = day - 1
@@ -74,16 +82,11 @@ const mainModel = {
         
         let date2 = new Date;
         date2.setDate(date2.getDate() - days);
-
-        // date.setDate(date.getDate() + 7);
-        // date = date.toLocaleDateString()
-        // console.log('added seven days', date)
         return date2
     },
     removeSevenDays: function (date) {
         date.setDate(date.getDate() - 7);
         date = date.toLocaleDateString()
-        // console.log('removed seven days', date)
         return date
     },
     removeEvent: function (id) {

@@ -7,6 +7,7 @@ let currentArr = []
 const submitButton = document.getElementById('addEvent')
 let eventEl = document.getElementById('event')
 let timeEl = document.getElementById('time')
+const containerTag = document.querySelector(".eventContainer")
 
 //Copy-pasted this function
 //Counts days ahead from the actual day
@@ -28,15 +29,15 @@ createWeek()
 
 //FUNCTIONS
 
-for (let index = 0; index < testWeek.length; index++) {
-    const date = testWeek[index];
-    date.addEventListener('click', function (e) {
-        e.preventDefault()
-        checkClasslist()
-        e.target.classList.add('activeDate')
-    })
+// for (let index = 0; index < testWeek.length; index++) {
+//     const date = testWeek[index];
+//     date.addEventListener('click', function (e) {
+//         e.preventDefault()
+//         checkClasslist()
+//         e.target.classList.add('activeDate')
+//     })
 
-};
+// };
 
 //This is the month translated from number to string (ex 5 is may, 7 is july)
 //WORKING
@@ -61,6 +62,7 @@ function setToMonday(date) {
 
 //WORKING
 function currentMonth(currentArr) {
+    // console.log('currentMonthFunc', currentArr[0])
     let month = currentArr[0]
     monthElement.textContent = month.getMonth();
     monthToString(month)
@@ -69,6 +71,7 @@ currentMonth(currentArr)
 
 //Working
 function currentYear(currentArr) {
+    // console.log('currentYearFunc', currentArr[0])
     let year = currentArr[0]
     yearElement.textContent = year.getFullYear();
 };
@@ -122,7 +125,7 @@ function updateWeekOnRightClick() {
 
 //Checks if classList 'activeDate' exists in list
 function checkClasslist() {
-    testWeek.forEach(date => {
+    ulDate.forEach(date => {
         if (date.classList.contains('activeDate')) {
             date.classList.remove('activeDate')
         };
@@ -130,38 +133,43 @@ function checkClasslist() {
 };
 
 //EVENTLISTENERS
-// document.getElementById('leftArrow').addEventListener('click', function (e) {
-//     console.log('THIS IS THE CURRENTARR', currentArr)
-//     // console.log('left arrow clicked')
-//     e.preventDefault()
-//     checkClasslist()
-//     currentMonth(currentArr)
-//     currentYear(currentArr)
-//     updateWeekOnLeftClick()
-//     updateDates(currentArr)
-// });
-// document.getElementById('rightArrow').addEventListener('click', function (e) {
-//     console.log('THIS IS THE CURRENTARR', currentArr)
-//     // console.log('right arrow clicked')
-//     e.preventDefault()
-//     checkClasslist()
-//     currentMonth(currentArr)
-//     currentYear(currentArr)
-//     updateWeekOnRightClick()
-//     updateDates(currentArr)
-// });
+document.getElementById('leftArrow').addEventListener('click', function (e) {
+    // console.log('THIS IS THE CURRENTARR', currentArr)
+    // console.log('left arrow clicked')
+    containerTag.innerHTML = ""
+    e.preventDefault()
+    checkClasslist()
+    updateWeekOnLeftClick()
+    currentMonth(currentArr)
+    currentYear(currentArr)
+    updateDates(currentArr)
+    eventsOfWeek()
+});
 
-//Click event for li-element
-// for (let index = 0; index < ulDate.length; index++) {
-//     const date = ulDate[index];
+document.getElementById('rightArrow').addEventListener('click', function (e) {
+    // console.log('THIS IS THE CURRENTARR', currentArr)
+    // console.log('right arrow clicked')
+    containerTag.innerHTML = ""
+    e.preventDefault()
+    checkClasslist()
+    updateWeekOnRightClick()
+    currentMonth(currentArr)
+    currentYear(currentArr)
+    updateDates(currentArr)
+    eventsOfWeek()
+});
 
-//     date.addEventListener('click', function (e) {
-//         e.preventDefault()
-//         checkClasslist()
-//         e.target.classList.add('activeDate')
+// Click event for li-element
+for (let index = 0; index < ulDate.length; index++) {
+    const date = ulDate[index];
 
-//     });
-// };
+    date.addEventListener('click', function (e) {
+        e.preventDefault()
+        checkClasslist()
+        e.target.classList.add('activeDate')
+
+    });
+};
 
 submitButton.addEventListener('click', function (e) {
     eventEl.style.display = "block"
@@ -169,32 +177,98 @@ submitButton.addEventListener('click', function (e) {
     submitButton.value = '✓'
 })
 
-function leftArrow() {
-
-    checkClasslist()
-    currentMonth(currentArr)
-    currentYear(currentArr)
-    updateWeekOnLeftClick()
-    updateDates(currentArr)
+async function eventsOfWeek(time) {
+    let response = await fetch(`/events/${time}`, {
+        method: "get"
+    });
+    let responseData = await response.json();
+    renderEvents(responseData.events)
 }
 
-function rightArrow() {
-  
-    checkClasslist()
-    currentMonth(currentArr)
-    currentYear(currentArr)
-    updateWeekOnRightClick()
-    updateDates(currentArr)
+function renderEvents(events) {
+
+    currentArr.forEach(date => {
+        date = date.toLocaleDateString()
+        // console.log('date', date)
+
+        events.forEach(event => {
+            if (event.time === date) {
+                console.log(event.time)
+                createElement(event)
+            }
+            
+        });
+    });
+}
+
+// for (let index = 0; index < currentArr.length; index++) {
+//     let date = currentArr[index];
+//     date = date.toLocaleDateString()
+//     console.log('date', date)
+
+
+// events.forEach(event => {
+//     if (date == event.time) {
+//         console.log('filter', event)
+//         createElement(event)
+//         return event
+//     } })
+
+// for (let index = 0; index < events.length; index++) {
+//     const event = events[index];
+//     if (date == event.time) {
+//         console.log('filter', event)
+//         createElement(event)
+//         return event
+//     }
+
+// }
+// createElement(filteredEvents)
+// };
+// };
+
+
+function createElement(event) {
+    console.log('event', event)
+
+    let divTag = document.createElement('div')
+    divTag.className = "card"
+
+    let pTag1 = document.createElement('p')
+    pTag1.className = "event-title"
+    pTag1.textContent = event.title
+
+    let pTag2 = document.createElement('p')
+    pTag2.className = "event-time"
+    pTag2.textContent = event.time
+
+    let buttonTag1 = document.createElement('button')
+    buttonTag1.className = "edit-button"
+    buttonTag1.dataset = "event.id"
+    buttonTag1.textContent = "Edit"
+
+    let buttonTag2 = document.createElement('button')
+    buttonTag2.className = "delete-button"
+    buttonTag2.textContent = "Delete"
+    buttonTag2.onclick = "handleDelete(event.id)"
+
+
+    containerTag.appendChild(divTag)
+    divTag.appendChild(pTag1)
+    divTag.appendChild(pTag2)
+    divTag.appendChild(buttonTag1)
+    divTag.appendChild(buttonTag2)
+
 }
 
 
 async function handleDelete(id) {
-   
+
     console.log("HandleDelete was called with id", id);
     const response = await fetch(`/events/${id}`, {
         method: "delete"
     });
-  
+
     if (response.redirected) {
         window.location.href = response.url; // '/'
     }

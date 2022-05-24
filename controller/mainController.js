@@ -1,9 +1,15 @@
 import mainModel from "../model/mainModel.js";
 
 export default {
-  
+    eventsOfWeek: function(req, res) {
+        let time = req.params.time;
+        res.json({events: mainModel.eventsOfWeek(time)})
+    }, 
+    calenderC: function (req, res) {
+        console.log('test')
+        res.render("calender")
+    },
     createEvent: (req, res) => {
-
         const title = req.body.event.title;
         const time = req.body.event.time;
         console.log(title, time);
@@ -11,24 +17,19 @@ export default {
 
         res.redirect('/events');
 
-        console.log('function createEvent in controller')
     },
     getAllEvents: (req, res) => {
-
-
         res.render("events", {
             events: mainModel.getEvents(),
             dates: mainModel.setToMonday(new Date),
-            addedDays: mainModel.addSevenDays(new Date),
-            removedDays: mainModel.removeSevenDays(new Date),
-            theWeek: mainModel.weekArray()
+            theWeek: mainModel.weekArray(),
+            events2: mainModel.eventsOfWeek()
         })
 
     },
     getAllFilteredEvents: (req, res) => {
-        res.render("events", {
-            events: mainModel.getFilteredEvents()
-        })
+        console.log('what is this?')
+        res.render("calender")
     },
     removeEvent: (req, res) => {
         const id = Number(req.params.id);
@@ -45,11 +46,11 @@ export default {
         const id = Number(req.params.id);
         const title = req.body.title;
         const time = req.body.time;
-        
+
         const isOK = mainModel.updateEvent(id, title, time);
 
         if (!isOK) {
-            console.log("Quote not Updated");
+            console.log("event not Updated");
             return;
         }
 
