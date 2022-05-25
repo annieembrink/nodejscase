@@ -8,6 +8,13 @@ const submitButton = document.getElementById('addEvent')
 let eventEl = document.getElementById('event')
 let timeEl = document.getElementById('time')
 const containerTag = document.querySelector(".eventContainer")
+const nav = document.querySelector("nav")
+const links = document.getElementById("links")
+
+nav.addEventListener('click', function (e) {
+    console.log('hello')
+    links.style.display = "block"
+})
 
 //Copy-pasted this function
 //Counts days ahead from the actual day
@@ -226,15 +233,22 @@ function createElement(event) {
 
 
 async function handleDelete(evt) {
-    console.log("HandleDelete was called with id", evt);
     
     const id = Number(evt.target.dataset.id)
+    console.log("HandleDelete was called with id", id);
+    
     const response = await fetch(`/events/${id}`, {
         method: "delete"
     });
 
-    if (response.redirected) {
-        window.location.href = response.url; // '/'
+    // if (response.redirected) {
+    //     window.location.href = response.url; // '/'
+    // }
+    console.log(response)
+
+    if(response.ok) {
+        const eventContainer = evt.target.parentElement;
+        eventContainer.remove()
     }
 }
 

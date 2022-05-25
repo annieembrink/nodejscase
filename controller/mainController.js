@@ -1,3 +1,4 @@
+import { response } from "express";
 import mainModel from "../model/mainModel.js";
 
 export default {
@@ -24,15 +25,17 @@ export default {
 
     },
     removeEvent: (req, res) => {
+        console.log('remove event was called with params', req.params)
         const id = Number(req.params.id);
         const eventToBeRemoved = mainModel.getEvent(id);
         const isOK = mainModel.removeEvent(eventToBeRemoved.id);
         if (!isOK) {
-            console.log('event removed');
-            return;
+            console.log('event not removed');
+        return res.json({success:false})
         }
 
-        res.redirect('/');
+        // res.redirect('/');
+        return res.json({success:true})
     },
     updateEvent: (req, res) => {
         const id = Number(req.params.id);
