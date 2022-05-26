@@ -12,12 +12,19 @@ body {
 }
 
 header {
-
+    color: #FFE9CE;
     display: flex;
-    justify-content: center;
-    font-size: 2rem;
+    justify-content: right;
+    flex: 1;
+}
+
+#headerAndNav {
+    width: 100%;
+    display: flex;
+    position: absolute;
+    background-color: #080808;
+    /* justify-content: left; */
     padding: 10px;
-    display: none;
 }
 
 #event,
@@ -161,8 +168,8 @@ footer p {
 }
 
 nav {
-    position: absolute;
-    background-color: #080808;
+    /* position: absolute; */
+    /* background-color: #080808; */
     justify-content: left;
     padding: 10px;
 }
@@ -185,9 +192,9 @@ nav {
     background-color: #7B886B;
 }
 
-#startpagebody nav {
+#startpagebody #headerAndNav {
     background-color: #7B886B;
-    width: 100%;
+    /* width: 100%; */
 }
 
 
