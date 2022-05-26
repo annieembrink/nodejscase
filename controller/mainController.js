@@ -38,6 +38,7 @@ export default {
         return res.json({success:true})
     },
     updateEvent: (req, res) => {
+        console.log('update event was called with params', req.params)
         const id = Number(req.params.id);
         const title = req.body.title;
         const time = req.body.time;
@@ -45,8 +46,10 @@ export default {
 
         if (!isOK) {
             console.log("event not Updated");
-            return;
+            // return;
+            return res.json({success:false});
         }
-        res.redirect('/');
+        // res.redirect('/');
+        return res.json({success:true})
     }
 };

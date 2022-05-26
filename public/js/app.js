@@ -296,9 +296,10 @@ async function handleEdit(evt) {
         });
 
         // Check if there is a redirect to follow the new url
-        if (response.redirected) {
-            window.location.href = response.url;
-        }
+
+        // if (response.redirected) {
+        //     window.location.href = response.url;
+        // }
     }
 }
 
