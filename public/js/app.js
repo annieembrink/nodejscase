@@ -16,13 +16,7 @@ const startIcon = document.getElementById("startIcon")
 iconNav.addEventListener('click', function (e) {
     console.log('hello')
     links.style.display = 'flex'
-    startIcon.style.display = 'none'
-    // if  (links.style.display = 'block') {
-    //     links.style.display = 'none'
-    // } else {
-    //     links.style.display = 'block'
-    // }
-    
+    startIcon.style.display = 'none'  
 })
 
 //Copy-pasted this function
@@ -75,7 +69,7 @@ function createWeek() {
 
 //WORKING
 function currentMonth(currentArr) {
-    console.log('currentMonthFunc', currentArr[0])
+    // console.log('currentMonthFunc', currentArr[0])
     let month = currentArr[0]
     monthElement.textContent = month.getMonth();
     monthToString(month)

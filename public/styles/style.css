@@ -127,7 +127,7 @@ footer p {
     position: fixed;
     bottom: 20px;
     left: 45%;
-    z-index: 100;
+    z-index: 1;
 
 }
 
@@ -165,7 +165,20 @@ nav {
     background-color: #080808;
     justify-content: left;
     padding: 10px;
-    /* z-index: 1000; */
+}
+
+#eventsBody nav {
+    z-index: 2;
+}
+
+#eventsBody #flex, #startpagebody #flex {
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: #7B886B;
 }
 
 #startpagebody {
@@ -175,17 +188,16 @@ nav {
 #startpagebody nav {
     background-color: #7B886B;
     width: 100%;
-    /* height: 100%; */
 }
 
 
 #menu {
     color: #FFE9CE;
     font-size: 1.5rem;
- 
 }
 
-.fa-calendar-check, .fa-house-user {
+.fa-calendar-check,
+.fa-house-user {
     color: #FFE9CE;
     font-size: 1.2rem;
     margin: 0 10px;
@@ -205,9 +217,8 @@ nav {
     justify-content: center;
     display: none;
     height: 100%;
-    width: 100%;    
+    width: 100%;
 }
-
 
 a {
     color: #FFE9CE;
@@ -217,15 +228,12 @@ a {
 
 #flex {
     width: 100%;
-    /* min-height: 50px; */
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    /* margin-bottom: 150px; */
 }
 
 /* Saker man skulle kunna fixa */
 /* Kunna ångra sig och inte skapa event - knapp */
 /* När man uppdaterar event - komma till samma plats efter och inte startsidan */
-/* Gör en snyggare startsida */
