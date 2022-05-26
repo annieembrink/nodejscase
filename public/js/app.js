@@ -8,12 +8,19 @@ const submitButton = document.getElementById('addEvent')
 let eventEl = document.getElementById('event')
 let timeEl = document.getElementById('time')
 const containerTag = document.querySelector(".eventContainer")
-const nav = document.querySelector("nav")
+const iconNav = document.getElementById("menu")
 const links = document.getElementById("links")
+const flex = document.getElementById("flex")
 
-nav.addEventListener('click', function (e) {
+iconNav.addEventListener('click', function (e) {
     console.log('hello')
-    links.style.display = "block"
+    links.style.display = 'flex'
+    // if  (links.style.display = 'block') {
+    //     links.style.display = 'none'
+    // } else {
+    //     links.style.display = 'block'
+    // }
+    
 })
 
 //Copy-pasted this function
@@ -57,8 +64,16 @@ function setToMonday(date) {
 };
 
 //WORKING
+function createWeek() {
+    for (let index = 0; index < 7; index++) {
+        let week = setToMonday(new Date).addDays(index)
+        currentArr.push(week)
+    };
+};
+
+//WORKING
 function currentMonth(currentArr) {
-    // console.log('currentMonthFunc', currentArr[0])
+    console.log('currentMonthFunc', currentArr[0])
     let month = currentArr[0]
     monthElement.textContent = month.getMonth();
     monthToString(month)
@@ -72,14 +87,6 @@ function currentYear(currentArr) {
     yearElement.textContent = year.getFullYear();
 };
 currentYear(currentArr)
-
-//WORKING
-function createWeek() {
-    for (let index = 0; index < 7; index++) {
-        let week = setToMonday(new Date).addDays(index)
-        currentArr.push(week)
-    };
-};
 
 //Updates the view - the li list, and makes textContent the dates of the week
 //WORKING
@@ -128,6 +135,7 @@ function checkClasslist() {
 };
 
 //EVENTLISTENERS
+
 document.getElementById('leftArrow').addEventListener('click', function (e) {
 
     containerTag.innerHTML = ""
@@ -165,9 +173,11 @@ for (let index = 0; index < ulDate.length; index++) {
 };
 
 submitButton.addEventListener('click', function (e) {
+ 
     eventEl.style.display = "block"
     timeEl.style.display = "block"
     submitButton.value = '✓'
+  
 })
 
 eventsOfWeek(time)

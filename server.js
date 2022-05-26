@@ -14,7 +14,7 @@ app.use(express.static('public'));
 
 app.get('/', mainController.getAllEvents);
 app.get('/events', mainController.getAllEvents)
-app.get('/calender', mainController.calenderC)
+app.get('/startpage', mainController.calenderC)
 app.get('/events/:time', mainController.eventsOfWeek)
 
 app.post('/events', mainController.createEvent);

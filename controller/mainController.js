@@ -7,7 +7,7 @@ export default {
         res.json({events: mainModel.eventsOfWeek(time)})
     }, 
     calenderC: function (req, res) {
-        res.render("calender")
+        res.render("startpage")
     },
     createEvent: (req, res) => {
         const title = req.body.event.title;
