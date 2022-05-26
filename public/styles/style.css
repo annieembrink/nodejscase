@@ -165,7 +165,7 @@ nav {
     background-color: #080808;
     justify-content: left;
     padding: 10px;
-    z-index: 1000;
+    /* z-index: 1000; */
 }
 
 #startpagebody {
@@ -174,6 +174,8 @@ nav {
 
 #startpagebody nav {
     background-color: #7B886B;
+    width: 100%;
+    /* height: 100%; */
 }
 
 
@@ -198,19 +200,14 @@ nav {
 }
 
 #links {
-    background-color: #080808;
+    background-color: #7B886B;
     display: flex;
     justify-content: center;
     display: none;
-    height: 100vh;
-    width: 100vw;
-    
+    height: 100%;
+    width: 100%;    
 }
 
-#icon1, #icon2 {
-    display: flex;
-    align-items: center;
-}
 
 a {
     color: #FFE9CE;
@@ -219,12 +216,13 @@ a {
 }
 
 #flex {
-    min-height: 50px;
+    width: 100%;
+    /* min-height: 50px; */
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin-bottom: 150px;
+    /* margin-bottom: 150px; */
 }
 
 /* Saker man skulle kunna fixa */

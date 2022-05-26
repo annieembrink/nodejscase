@@ -11,10 +11,12 @@ const containerTag = document.querySelector(".eventContainer")
 const iconNav = document.getElementById("menu")
 const links = document.getElementById("links")
 const flex = document.getElementById("flex")
+const startIcon = document.getElementById("startIcon")
 
 iconNav.addEventListener('click', function (e) {
     console.log('hello')
     links.style.display = 'flex'
+    startIcon.style.display = 'none'
     // if  (links.style.display = 'block') {
     //     links.style.display = 'none'
     // } else {
