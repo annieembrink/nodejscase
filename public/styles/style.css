@@ -23,7 +23,6 @@ header {
     display: flex;
     position: absolute;
     background-color: #080808;
-    /* justify-content: left; */
     padding: 10px;
 }
 
@@ -168,8 +167,6 @@ footer p {
 }
 
 nav {
-    /* position: absolute; */
-    /* background-color: #080808; */
     justify-content: left;
     padding: 10px;
 }
@@ -194,7 +191,6 @@ nav {
 
 #startpagebody #headerAndNav {
     background-color: #7B886B;
-    /* width: 100%; */
 }
 
 
@@ -240,7 +236,3 @@ a {
     justify-content: center;
     flex-direction: column;
 }
-
-/* Saker man skulle kunna fixa */
-/* Kunna ångra sig och inte skapa event - knapp */
-/* När man uppdaterar event - komma till samma plats efter och inte startsidan */

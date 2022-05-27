@@ -14,9 +14,8 @@ const flex = document.getElementById("flex")
 const startIcon = document.getElementById("startIcon")
 
 iconNav.addEventListener('click', function (e) {
-    console.log('hello')
     links.style.display = 'flex'
-    startIcon.style.display = 'none'  
+    startIcon.style.display = 'none'
 })
 
 //Copy-pasted this function
@@ -91,7 +90,7 @@ function updateDates(arr) {
         const liDate = ulDate[index];
         liDate.textContent = arr[index].getDate();
     };
-    return arr
+    // return arr
 };
 
 //Call the function that creates current week with dates
@@ -156,24 +155,12 @@ document.getElementById('rightArrow').addEventListener('click', function (e) {
     eventsOfWeek()
 });
 
-// Click event for li-element
-for (let index = 0; index < ulDate.length; index++) {
-    const date = ulDate[index];
-
-    date.addEventListener('click', function (e) {
-        e.preventDefault()
-        checkClasslist()
-        e.target.classList.add('activeDate')
-
-    });
-};
-
 submitButton.addEventListener('click', function (e) {
- 
+
     eventEl.style.display = "block"
     timeEl.style.display = "block"
     submitButton.value = '✓'
-  
+
 })
 
 eventsOfWeek(time)
@@ -199,6 +186,54 @@ function renderEvents(events) {
     });
 }
 
+
+
+let emptyArr = []
+// Click event for li-element
+for (let index = 0; index < ulDate.length; index++) {
+    const date = ulDate[index];
+    let liDate = currentArr[index];
+    liDate = liDate.toLocaleDateString()
+
+    date.addEventListener('click', function (e) {
+        emptyArr = []
+        emptyArr.push(liDate)
+        e.preventDefault()
+        checkClasslist()
+        e.target.classList.add('activeDate')
+        eventsOfLi()
+    });
+};
+
+async function eventsOfLi(time) {
+    console.log('eventsofli was called')
+    let response = await fetch(`/events/${time}`, {
+        method: "get"
+    });
+    let responseData = await response.json();
+    renderEventsLi(responseData.events)
+}
+
+function renderEventsLi(events) {
+    console.log('rendereventsofli was called')
+    containerTag.innerHTML = ''
+    events.forEach(event => {
+        if (event.time == emptyArr) {
+            console.log(event)
+            createElement(event)
+        }
+    });
+
+}
+
+
+
+
+
+
+
+
+
 function createElement(event) {
 
     let divTag = document.createElement('div')
@@ -221,7 +256,7 @@ function createElement(event) {
     buttonTag2.className = "delete-button"
     buttonTag2.innerText = "Delete"
     buttonTag2.dataset.id = event.id
-    
+
     containerTag.appendChild(divTag)
     divTag.appendChild(pTag1)
     divTag.appendChild(pTag2)
@@ -229,20 +264,20 @@ function createElement(event) {
     divTag.appendChild(buttonTag2)
 
     document
-    .querySelectorAll(".edit-button")
-    .forEach((btn) => (btn.onclick = handleEdit));
+        .querySelectorAll(".edit-button")
+        .forEach((btn) => (btn.onclick = handleEdit));
 
     document
-    .querySelectorAll(".delete-button")
-    .forEach((btn) => (btn.onclick = handleDelete));
+        .querySelectorAll(".delete-button")
+        .forEach((btn) => (btn.onclick = handleDelete));
 }
 
 
 async function handleDelete(evt) {
-    
+
     const id = Number(evt.target.dataset.id)
     console.log("HandleDelete was called with id", id);
-    
+
     const response = await fetch(`/events/${id}`, {
         method: "delete"
     });
@@ -252,7 +287,7 @@ async function handleDelete(evt) {
     // }
     console.log(response)
 
-    if(response.ok) {
+    if (response.ok) {
         const eventContainer = evt.target.parentElement;
         eventContainer.remove()
     }
@@ -281,7 +316,7 @@ async function handleEdit(evt) {
         titleEl.contentEditable = false;
         dateEl.contentEditable = false;
         evt.target.innerText = "Edit";
-        
+
         // Look at values of authorEl and quoteEl and submit new quote
         const newEvent = {
             title: titleEl.innerText,
@@ -302,5 +337,3 @@ async function handleEdit(evt) {
         // }
     }
 }
-
-
