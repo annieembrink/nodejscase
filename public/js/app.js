@@ -1,6 +1,7 @@
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 const yearElement = document.getElementById('yearElement')
 const monthElement = document.getElementById('monthElement')
+const weekElement = document.getElementById('weekElement')
 const ulDate = document.querySelectorAll('#dateOfWeek li');
 const testWeek = document.querySelectorAll('#testWeek li');
 let currentArr = []
@@ -57,6 +58,16 @@ function setToMonday(date) {
         date.setHours(-24 * (day - 1));
     return date;
 };
+
+function getWeek() {
+    currentdate = setToMonday(currentArr[0])
+    const oneJan = new Date(currentdate.getFullYear(), 0, 1);
+    const numberOfDays = Math.floor((currentdate - oneJan) / (24 * 60 * 60 * 1000));
+    const result = Math.ceil((currentdate.getDay() + 1 + numberOfDays) / 7);
+    weekElement.textContent = 'Week: ' + result
+    console.log(`The week number of the current date (${currentdate}) is ${result}.`);
+}
+getWeek()
 
 //WORKING
 function createWeek() {
@@ -131,12 +142,18 @@ function checkClasslist() {
 
 //EVENTLISTENERS
 
+weekElement.addEventListener('click', function(e) {
+    containerTag.innerHTML = ''
+    eventsOfWeek()
+})
+
 document.getElementById('leftArrow').addEventListener('click', function (e) {
 
     containerTag.innerHTML = ""
     e.preventDefault()
     checkClasslist()
     updateWeekOnLeftClick()
+    getWeek()
     currentMonth(currentArr)
     currentYear(currentArr)
     updateDates(currentArr)
@@ -149,6 +166,7 @@ document.getElementById('rightArrow').addEventListener('click', function (e) {
     e.preventDefault()
     checkClasslist()
     updateWeekOnRightClick()
+    getWeek()
     currentMonth(currentArr)
     currentYear(currentArr)
     updateDates(currentArr)
@@ -163,8 +181,8 @@ submitButton.addEventListener('click', function (e) {
 
 })
 
+//Show events for weeks
 eventsOfWeek(time)
-
 async function eventsOfWeek(time) {
     let response = await fetch(`/events/${time}`, {
         method: "get"
@@ -186,8 +204,7 @@ function renderEvents(events) {
     });
 }
 
-
-
+//Show events for singel dates and not a whole week
 let emptyArr = []
 // Click event for li-element
 for (let index = 0; index < ulDate.length; index++) {
@@ -219,7 +236,6 @@ function renderEventsLi(events) {
     containerTag.innerHTML = ''
     events.forEach(event => {
         if (event.time == emptyArr) {
-            console.log(event)
             createElement(event)
         }
     });
