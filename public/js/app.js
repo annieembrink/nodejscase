@@ -64,11 +64,11 @@ function createWeek() {
 
 function getWeek() {
     currentdate = setToMonday(currentArr[0])
-    console.log(currentdate)
+    // console.log(currentdate)
     const oneJan = new Date(currentdate.getFullYear(), 0, 1);
     const numberOfDays = Math.floor((currentdate - oneJan) / (24 * 60 * 60 * 1000));
     const result = Math.ceil((currentdate.getDay() + 1 + numberOfDays) / 7);
-    weekElement.textContent = 'Week: ' + result
+    weekElement.textContent = 'Week ' + result
     // console.log(`The week number of the current date (${currentdate}) is ${result}.`);
 }
 getWeek()
@@ -214,7 +214,7 @@ for (let index = 0; index < ulDate.length; index++) {
     date.addEventListener('click', function (e) {
         let liDate = currentArr[index];
         liDate = liDate.toLocaleDateString()
-        console.log(liDate)
+        // console.log(liDate)
         emptyArr = []
         emptyArr.push(liDate)
         e.preventDefault()
@@ -225,7 +225,7 @@ for (let index = 0; index < ulDate.length; index++) {
 };
 
 async function eventsOfLi(time) {
-    console.log('eventsofli was called')
+    // console.log('eventsofli was called')
     let response = await fetch(`/events/${time}`, {
         method: "get"
     });
@@ -234,9 +234,9 @@ async function eventsOfLi(time) {
 }
 
 function renderEventsLi(events) {
-    console.log('rendereventsofli was called')
+    // console.log('rendereventsofli was called')
     containerTag.innerHTML = ''
-    console.log(emptyArr)
+    // console.log(emptyArr)
     events.forEach(event => {
         if (event.time == emptyArr) {
             createElement(event)
@@ -244,14 +244,6 @@ function renderEventsLi(events) {
     });
 
 }
-
-
-
-
-
-
-
-
 
 function createElement(event) {
 
@@ -314,13 +306,13 @@ async function handleDelete(evt) {
 
 //SEEM TO WORK OK
 async function handleEdit(evt) {
-    console.log('handleEdit was called')
+    // console.log('handleEdit was called')
     const id = Number(evt.target.dataset.id); // data-id -> dataset.id
     const container = evt.target.parentElement;
-    console.log('container', container)
+    // console.log('container', container)
     const titleEl = container.querySelector(".event-title");
     const dateEl = container.querySelector(".event-time");
-    console.log(titleEl, dateEl);
+    // console.log(titleEl, dateEl);
 
     // if not editable make them editable
     if (!titleEl.isContentEditable && !dateEl.isContentEditable) {
@@ -354,5 +346,11 @@ async function handleEdit(evt) {
         // if (response.redirected) {
         //     window.location.href = response.url;
         // }
+
+        if (response.ok) {
+            const eventContainer = evt.target.parentElement;
+
+            //if new date is not in currentarr, remove...
+        }
     }
 }
