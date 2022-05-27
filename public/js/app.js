@@ -14,11 +14,6 @@ const links = document.getElementById("links")
 const flex = document.getElementById("flex")
 const startIcon = document.getElementById("startIcon")
 
-iconNav.addEventListener('click', function (e) {
-    links.style.display = 'flex'
-    startIcon.style.display = 'none'
-})
-
 //Copy-pasted this function
 //Counts days ahead from the actual day
 
@@ -59,16 +54,6 @@ function setToMonday(date) {
     return date;
 };
 
-function getWeek() {
-    currentdate = setToMonday(currentArr[0])
-    const oneJan = new Date(currentdate.getFullYear(), 0, 1);
-    const numberOfDays = Math.floor((currentdate - oneJan) / (24 * 60 * 60 * 1000));
-    const result = Math.ceil((currentdate.getDay() + 1 + numberOfDays) / 7);
-    weekElement.textContent = 'Week: ' + result
-    console.log(`The week number of the current date (${currentdate}) is ${result}.`);
-}
-getWeek()
-
 //WORKING
 function createWeek() {
     for (let index = 0; index < 7; index++) {
@@ -76,6 +61,17 @@ function createWeek() {
         currentArr.push(week)
     };
 };
+
+function getWeek() {
+    currentdate = setToMonday(currentArr[0])
+    console.log(currentdate)
+    const oneJan = new Date(currentdate.getFullYear(), 0, 1);
+    const numberOfDays = Math.floor((currentdate - oneJan) / (24 * 60 * 60 * 1000));
+    const result = Math.ceil((currentdate.getDay() + 1 + numberOfDays) / 7);
+    weekElement.textContent = 'Week: ' + result
+    // console.log(`The week number of the current date (${currentdate}) is ${result}.`);
+}
+getWeek()
 
 //WORKING
 function currentMonth(currentArr) {
@@ -142,7 +138,12 @@ function checkClasslist() {
 
 //EVENTLISTENERS
 
-weekElement.addEventListener('click', function(e) {
+iconNav.addEventListener('click', function (e) {
+    links.style.display = 'flex'
+    startIcon.style.display = 'none'
+})
+
+weekElement.addEventListener('click', function (e) {
     containerTag.innerHTML = ''
     eventsOfWeek()
 })
@@ -204,15 +205,16 @@ function renderEvents(events) {
     });
 }
 
-//Show events for singel dates and not a whole week
+//Show events for single dates and not a whole week
 let emptyArr = []
 // Click event for li-element
 for (let index = 0; index < ulDate.length; index++) {
     const date = ulDate[index];
-    let liDate = currentArr[index];
-    liDate = liDate.toLocaleDateString()
 
     date.addEventListener('click', function (e) {
+        let liDate = currentArr[index];
+        liDate = liDate.toLocaleDateString()
+        console.log(liDate)
         emptyArr = []
         emptyArr.push(liDate)
         e.preventDefault()
@@ -234,6 +236,7 @@ async function eventsOfLi(time) {
 function renderEventsLi(events) {
     console.log('rendereventsofli was called')
     containerTag.innerHTML = ''
+    console.log(emptyArr)
     events.forEach(event => {
         if (event.time == emptyArr) {
             createElement(event)
