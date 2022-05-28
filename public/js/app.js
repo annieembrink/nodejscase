@@ -145,6 +145,7 @@ iconNav.addEventListener('click', function (e) {
 
 weekElement.addEventListener('click', function (e) {
     containerTag.innerHTML = ''
+    checkClasslist()
     eventsOfWeek()
 })
 
@@ -315,9 +316,9 @@ async function handleEdit(evt) {
     // console.log(titleEl, dateEl);
 
     // if not editable make them editable
-    if (!titleEl.isContentEditable && !dateEl.isContentEditable) {
+    if (!titleEl.isContentEditable) {
         titleEl.contentEditable = true;
-        dateEl.contentEditable = true;
+        // dateEl.contentEditable = true;
 
         // clicking the same button should save the changes
         evt.target.innerText = "Save";
@@ -325,7 +326,7 @@ async function handleEdit(evt) {
         // Second time clicked it should save changes
         // reset element to be non editable
         titleEl.contentEditable = false;
-        dateEl.contentEditable = false;
+        // dateEl.contentEditable = false;
         evt.target.innerText = "Edit";
 
         // Look at values of authorEl and quoteEl and submit new quote
