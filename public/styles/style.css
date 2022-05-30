@@ -18,7 +18,7 @@ header {
     flex: 1;
 }
 
-#headerAndNav {
+.headerAndNav {
     width: 100%;
     display: flex;
     position: absolute;
@@ -65,7 +65,6 @@ footer p {
 #date-container {
     min-height: 100px;
     background-color: #090909;
-
     width: 100vw;
     color: #FFE9CE;
     font-size: 1.3rem;
@@ -92,7 +91,6 @@ footer p {
     background-color: #E26D5A;
     width: 100vw;
     color: #FFE9CE;
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -135,7 +133,6 @@ footer p {
     bottom: 20px;
     left: 45%;
     z-index: 1;
-
 }
 
 .activeDate {
@@ -168,13 +165,14 @@ footer p {
 }
 
 nav {
-    justify-content: left;
+    /* justify-content: left; */
     padding: 10px;
-}
-
-#eventsBody nav {
     z-index: 2;
 }
+
+/* #eventsBody nav, #startpagebody nav {
+    z-index: 2;
+} */
 
 #eventsBody #flex, #startpagebody #flex {
     height: 100vh;
@@ -182,18 +180,13 @@ nav {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 1;
+    /* z-index: 1; */
     background-color: #7B886B;
 }
 
-#startpagebody {
+#startpagebody, #headerAndNavStart {
     background-color: #7B886B;
 }
-
-#startpagebody #headerAndNav {
-    background-color: #7B886B;
-}
-
 
 #menu {
     color: #FFE9CE;

@@ -1,4 +1,3 @@
-import { response } from "express";
 import mainModel from "../model/mainModel.js";
 
 export default {
@@ -34,7 +33,6 @@ export default {
         return res.json({success:false})
         }
 
-        // res.redirect('/');
         return res.json({success:true})
     },
     updateEvent: (req, res) => {
@@ -46,10 +44,8 @@ export default {
 
         if (!isOK) {
             console.log("event not Updated");
-            // return;
             return res.json({success:false});
         }
-        // res.redirect('/');
         return res.json({success:true})
     }
 };

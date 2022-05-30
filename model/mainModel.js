@@ -10,7 +10,6 @@ const mainModel = {
     getEvents: function () {
         let events = JSON.parse(fs.readFileSync(dbPath, "utf-8"))
         return events
-
     },
     getEvent: function (id) {
         return this.getEvents().find((event) => event.id === id);
@@ -35,28 +34,19 @@ const mainModel = {
         return true;
     },
     removeEvent: function (id) {
-        // Get all quotes
         const allEvents = this.getEvents();
-    
-        // Remove quote specified by id
         const filteredEvents = allEvents.filter((event) => event.id !== id);
-    
-        // Write new state to db
         this.saveEvent(filteredEvents);
     
         return true;
       },
       updateEvent: function (id, newTitle, newTime) {
-        // Get all quotes
         const allEvents = this.getEvents();
     
-        // if quotes are not defined we return false
-        // to signal that something went wrong
         if (!allEvents) {
           return false;
         }
     
-        // Update quote specified by id
         const idx = allEvents.findIndex((event) => event.id === id);
     
         if (idx < 0) {
@@ -66,7 +56,6 @@ const mainModel = {
         allEvents[idx].title = newTitle;
         allEvents[idx].time = newTime;
     
-        // Write new state to db
         this.saveEvent(allEvents);
     
         return true;
