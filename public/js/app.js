@@ -13,6 +13,13 @@ const iconNav = document.getElementById("menu");
 const links = document.getElementById("links");
 const flex = document.getElementById("flex");
 const startIcon = document.getElementById("startIcon");
+const navElement = document.getElementById("navEl")
+
+navElement.addEventListener('click', function (e) {
+    console.log('hello')
+    links.style.display = 'flex';
+    startIcon.style.display = 'none';
+});
 
 //Copy-pasted these functions
 Date.prototype.addDays = function (days) {
@@ -117,11 +124,6 @@ function checkClasslist() {
 };
 
 //EVENTLISTENERS
-
-iconNav.addEventListener('click', function (e) {
-    links.style.display = 'flex';
-    startIcon.style.display = 'none';
-});
 
 weekElement.addEventListener('click', function (e) {
     containerTag.innerHTML = '';
